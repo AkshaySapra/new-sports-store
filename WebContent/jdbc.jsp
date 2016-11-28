@@ -22,16 +22,10 @@ Public methods:
 %>
 
 <%!
-	public void getConnection() throws SQLException 
+	public void getConnection() throws SQLException, ClassNotFoundException 
 	{
-		try{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			con = DriverManager.getConnection(url, uid, pw);
-		
-		}catch(Exception E){
-			//throw new NullPointerException();
-		}
-		
+			con = DriverManager.getConnection(url, uid, pw);		
 	}
    
 	public void closeConnection() throws SQLException 
