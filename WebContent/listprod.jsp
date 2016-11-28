@@ -6,7 +6,7 @@
 
 <html>
 <head>
-<title>Ray's Grocery</title>
+<title>Mikey.ca</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -36,14 +36,12 @@ catch (SQLException ex)
 */
 %>
 
-  <option>Beverages</option>
-  <option>Condiments</option>
-  <option>Confections</option>
-  <option>Dairy Products</option>
-  <option>Grains/Cereals</option>
-  <option>Meat/Poultry</option>
-  <option>Produce</option>
-  <option>Seafood</option>
+  <option>Soccer</option>
+  <option>Rugby</option>
+  <option>Basketball</option>
+  <option>Curling</option>
+  <option>Baseball</option>
+  <option>Hockey</option>
 
   <input type="text" name="productName" size="50">    
   </select><input type="submit" value="Submit"><input type="reset" value="Reset"></p>
@@ -52,14 +50,12 @@ catch (SQLException ex)
 <%
 // Colors for different item categories
 HashMap colors = new HashMap();		// This may be done dynamically as well, a little tricky...
-colors.put("Beverages", "#0000FF");
-colors.put("Condiments", "#FF0000");
-colors.put("Confections", "#000000");
-colors.put("Dairy Products", "#6600CC");
-colors.put("Grains/Cereals", "#55A5B3");
-colors.put("Meat/Poultry", "#FF9900");
-colors.put("Produce", "#00CC00");
-colors.put("Seafood", "#FF66CC");
+colors.put("Soccer", "#0000FF");
+colors.put("Rugby", "#FF0000");
+colors.put("Basketball", "#000000");
+colors.put("Curling", "#6600CC");
+colors.put("Baseball", "#55A5B3");
+colors.put("Hockey", "#FF9900");
 %>
 
 <%
@@ -75,23 +71,23 @@ if (hasNameParam && hasCategoryParam)
 {
 	filter = "<h3>Products containing '"+name+"' in category: '"+category+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT productId, productName, price, categoryName FROM Product WHERE productName LIKE ? AND categoryName = ?";
+	sql = "P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ?";
 }
 else if (hasNameParam)
 {
 	filter = "<h3>Products containing '"+name+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT productId, productName, price, categoryName FROM Product WHERE productName LIKE ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ?";
 }
 else if (hasCategoryParam)
 {
 	filter = "<h3>Products in category: '"+category+"'</h3>";
-	sql = "SELECT productId, productName, price, categoryName FROM Product WHERE categoryName = ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND PC.catName = ?";
 }
 else
 {
 	filter = "<h3>All Products</h3>";
-	sql = "SELECT productId, productName, price, categoryName FROM Product";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID";
 }
 
 out.println(filter);

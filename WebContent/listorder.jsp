@@ -12,9 +12,9 @@
 <h1>Order List</h1>
 
 <%
-String sql = "SELECT O.orderId, O.CustomerId, totalAmount, cname, productId, quantity, price "
-		+ "FROM Orders O, Customer C, OrderedProduct OP "
-		+ "WHERE O.customerId = C.customerId and OP.orderid = O.orderId ";
+String sql = "SELECT O.oid, O.UserID, O.totalAmount, U.fname, OP.pid, OP.quantity, P.price "
+		+ "FROM Orders O, Users U, OrderProduct OP, Product P "
+		+ "WHERE O.UserID = U.UserID AND OP.oid = O.oid AND P.pid = OP.pid";
 
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 
