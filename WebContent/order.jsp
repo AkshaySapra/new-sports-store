@@ -48,7 +48,7 @@ try
 	                		
         String sql = "SELECT customerId, cname, password FROM Customer WHERE customerId = ?";	
 				      
-   		con = DriverManager.getConnection(url, uid, pw);
+   		con = DriverManager.getConnection(url, uid, pwd);
    		PreparedStatement pstmt = con.prepareStatement(sql);
    		pstmt.setInt(1, num);
    		ResultSet rst = pstmt.executeQuery();
