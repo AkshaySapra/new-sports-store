@@ -85,6 +85,7 @@ CREATE TABLE Product (
 	price decimal(9,2),
 	catID int,
 	picURL varchar(50),
+	currentlySelling bit,
 	PRIMARY KEY (pid), 
 	FOREIGN KEY (catID) REFERENCES ProductCategory (catID)
 		ON DELETE CASCADE ON UPDATE CASCADE
@@ -158,24 +159,24 @@ INSERT INTO ProductCategory VALUES (5,'Baseball', NULL)
 INSERT INTO ProductCategory VALUES (6,'Hockey', NULL)
 
 
-INSERT INTO Product VALUES (1, 'Soccer Ball', 10, 1, NULL)
-INSERT INTO Product VALUES (2, 'Soccer Cleats', 10, 1, NULL)
-INSERT INTO Product VALUES (3, 'Soccer Gloves', 10, 1, NULL)
-INSERT INTO Product VALUES (4, 'Rugby Ball', 10, 2, NULL)
-INSERT INTO Product VALUES (5, 'Rugby Cleats', 10, 2, NULL)
-INSERT INTO Product VALUES (6, 'Rugby Cap', 10, 2, NULL)
-INSERT INTO Product VALUES (7, 'Basketball', 10, 3, NULL)
-INSERT INTO Product VALUES (8, 'Basketball Shoes', 10, 3, NULL)
-INSERT INTO Product VALUES (9, 'Basketball Hoop', 10, 3, NULL)
-INSERT INTO Product VALUES (10, 'Curling Rock', 10, 4, NULL)
-INSERT INTO Product VALUES (11, 'Curling Shoes', 10, 4, NULL)
-INSERT INTO Product VALUES (12, 'Curling Broom', 10, 4, NULL)
-INSERT INTO Product VALUES (13, 'Baseball', 10, 5, NULL)
-INSERT INTO Product VALUES (14, 'Baseball Cleats', 10, 5, NULL)
-INSERT INTO Product VALUES (15, 'Baseball Bat', 10, 5, NULL)
-INSERT INTO Product VALUES (16, 'Hockey Puck', 10, 6, NULL)
-INSERT INTO Product VALUES (17, 'Hockey Stick', 10, 6, NULL)
-INSERT INTO Product VALUES (18, 'Hockey Skates', 10, 6, NULL) 
+INSERT INTO Product VALUES (1, 'Soccer Ball', 10, 1, NULL, 1)
+INSERT INTO Product VALUES (2, 'Soccer Cleats', 10, 1, NULL, 1)
+INSERT INTO Product VALUES (3, 'Soccer Gloves', 10, 1, NULL, 1)
+INSERT INTO Product VALUES (4, 'Rugby Ball', 10, 2, NULL, 1)
+INSERT INTO Product VALUES (5, 'Rugby Cleats', 10, 2, NULL, 1)
+INSERT INTO Product VALUES (6, 'Rugby Cap', 10, 2, NULL, 1)
+INSERT INTO Product VALUES (7, 'Basketball', 10, 3, NULL, 1)
+INSERT INTO Product VALUES (8, 'Basketball Shoes', 10, 3, NULL, 1)
+INSERT INTO Product VALUES (9, 'Basketball Hoop', 10, 3, NULL, 1)
+INSERT INTO Product VALUES (10, 'Curling Rock', 10, 4, NULL, 1)
+INSERT INTO Product VALUES (11, 'Curling Shoes', 10, 4, NULL, 1)
+INSERT INTO Product VALUES (12, 'Curling Broom', 10, 4, NULL, 1)
+INSERT INTO Product VALUES (13, 'Baseball', 10, 5, NULL, 1)
+INSERT INTO Product VALUES (14, 'Baseball Cleats', 10, 5, NULL, 1)
+INSERT INTO Product VALUES (15, 'Baseball Bat', 10, 5, NULL, 1)
+INSERT INTO Product VALUES (16, 'Hockey Puck', 10, 6, NULL, 1)
+INSERT INTO Product VALUES (17, 'Hockey Stick', 10, 6, NULL, 1)
+INSERT INTO Product VALUES (18, 'Hockey Skates', 10, 6, NULL, 1) 
 
 
 INSERT INTO UserGroup VALUES (1, 'Manager')
