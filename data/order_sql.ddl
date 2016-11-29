@@ -143,14 +143,13 @@ CREATE TABLE OrderedProduct (
 	oid int,
 	pid int,
 	quantity int,
-	price int,
+	price float,
 	PRIMARY KEY (oid, pid),
 	FOREIGN KEY (oid) REFERENCES Orders (oid)
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (pid) REFERENCES Product (pid)
 		ON DELETE NO ACTION ON UPDATE NO ACTION
 );
-
 
 INSERT INTO ProductCategory VALUES (1,'Soccer', NULL)
 INSERT INTO ProductCategory VALUES (2,'Rugby', NULL)
@@ -244,6 +243,6 @@ INSERT INTO Stores VALUES ('Warehouse B', 18, 45)
 INSERT INTO Orders VALUES ('2015-10-04', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
 
 
-INSERT INTO OrderedProduct VALUES (1, 1, 2)
-INSERT INTO OrderedProduct VALUES (1, 2, 1)
+INSERT INTO OrderedProduct VALUES (1, 1, 2, 55.0)
+INSERT INTO OrderedProduct VALUES (1, 2, 1, 33.0)
 

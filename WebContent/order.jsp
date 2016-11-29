@@ -108,12 +108,12 @@ try
                    out.println("</tr>");
                    total = total +pr*qty;
 
-   				sql = "INSERT INTO OrderedProduct (oid, pid, quantity, price) VALUES(?, ?, ?, ?)";
+   				sql = "INSERT INTO OrderedProduct (oid, pid, quantity, price) VALUES( ?, ?, ?, ?)";
    				pstmt = con.prepareStatement(sql);
-   				pstmt.setInt(1, orderId);
+   			 	pstmt.setInt(1, orderId); 
    				pstmt.setInt(2, Integer.parseInt(productId));
    				pstmt.setInt(3, qty);
-   				pstmt.setString(4, price);
+   				pstmt.setDouble(4, Double.parseDouble(price));
    				pstmt.executeUpdate();				
            	}
            	out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td>"
