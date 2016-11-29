@@ -93,7 +93,7 @@ CREATE TABLE Product (
 
 
 CREATE TABLE Orders (
-	oid int,
+	oid int IDENTITY,
 	odate date,
 	address varchar(50),
 	city varchar(50),

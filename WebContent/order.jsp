@@ -63,7 +63,9 @@ try
    		else
    		{	
    			custName = rst.getString(2);
-			String dbpassword = rst.getString(3);
+			String dbpassword = rst.getString("password");
+			out.print("dbpassword is: " + dbpassword);
+			out.print("password is: " + password);
 				    		
 			// make sure the password on the database is the same as the one the user entered
 			if (!dbpassword.equals(password)) 
