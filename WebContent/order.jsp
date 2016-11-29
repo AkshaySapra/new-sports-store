@@ -16,7 +16,7 @@
 
 <%
 // Get customer id
-String custId = request.getParameter("customerId");
+String custId = request.getParameter("UserID");
 // Get password
 String password = request.getParameter("password");
 // Get shopping cart
@@ -46,7 +46,7 @@ try
 		// Get database connection
         getConnection();
 	                		
-        String sql = "SELECT customerId, cname, password FROM Customer WHERE customerId = ?";	
+        String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	
 				      
    		/* con = DriverManager.getConnection(url, uid, pwd); */
    		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -72,7 +72,7 @@ try
 			}
 		
    			// Enter order information into database
-   			sql = "INSERT INTO Orders (customerId, totalAmount) VALUES(?, 0);";
+   			sql = "INSERT INTO Orders (UserID, totalAmount) VALUES(?, 0);";
 
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
