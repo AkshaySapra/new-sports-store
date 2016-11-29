@@ -71,7 +71,7 @@ if (hasNameParam && hasCategoryParam)
 {
 	filter = "<h3>Products containing '"+name+"' in category: '"+category+"'</h3>";
 	name = '%'+name+'%';
-	sql = "P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ?";
 }
 else if (hasNameParam)
 {
