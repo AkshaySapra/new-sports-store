@@ -75,7 +75,7 @@ try
 			}
 		
    			// Enter order information into database
-   			sql = "INSERT INTO Orders (UserID, totalAmount) VALUES(?, 0);";
+   			sql = "INSERT INTO Orders (UserID, TotalAmount) VALUES(?, 0);";
 
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -121,7 +121,7 @@ try
            	out.println("</table>");
 
    			// Update order total
-   			sql = "UPDATE Orders SET totalAmount=? WHERE orderId=?";
+   			sql = "UPDATE Orders SET TotalAmount=? WHERE oid=?";
    			pstmt = con.prepareStatement(sql);
    			pstmt.setDouble(1, total);
    			pstmt.setInt(2, orderId);			
