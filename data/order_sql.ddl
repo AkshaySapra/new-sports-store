@@ -1,4 +1,4 @@
-DROP TABLE OrderProduct;
+DROP TABLE OrderedProduct;
 DROP TABLE Stores;
 DROP TABLE Orders;
 DROP TABLE ProductReview;
@@ -139,7 +139,7 @@ CREATE TABLE Stores (
 );
 
 
-CREATE TABLE OrderProduct (
+CREATE TABLE OrderedProduct (
 	oid int,
 	pid int,
 	quantity int,
@@ -240,9 +240,9 @@ INSERT INTO Stores VALUES ('Warehouse B', 17, 123)
 INSERT INTO Stores VALUES ('Warehouse B', 18, 45)
 
 
-INSERT INTO Orders VALUES (1, '2015-10-04', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
+INSERT INTO Orders VALUES ('2015-10-04', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
 
 
-INSERT INTO OrderProduct VALUES (1, 1, 2)
-INSERT INTO OrderProduct VALUES (1, 2, 1)
+INSERT INTO OrderedProduct VALUES (1, 1, 2)
+INSERT INTO OrderedProduct VALUES (1, 2, 1)
 

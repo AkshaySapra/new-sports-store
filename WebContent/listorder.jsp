@@ -13,7 +13,7 @@
 
 <%
 String sql = "SELECT O.oid, O.UserID, O.totalAmount, U.fname, OP.pid, OP.quantity, P.price "
-		+ "FROM Orders O, Users U, OrderProduct OP, Product P "
+		+ "FROM Orders O, Users U, OrderedProduct OP, Product P "
 		+ "WHERE O.UserID = U.UserID AND OP.oid = O.oid AND P.pid = OP.pid";
 
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
