@@ -7,7 +7,9 @@
 <html>
 <head>
 <title>Mikey.ca</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+ <link href="shift.css" rel="stylesheet">
+ <link href="bootstrap.css" rel="stylesheet">
+ <link href="second.css" rel="stylesheet">
 </head>
 <body>
 

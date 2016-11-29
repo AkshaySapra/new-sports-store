@@ -1,5 +1,3 @@
-<%@ include file="loginInfo.jsp"%>
-
 <H1 align="center"><font face="cursive" color="#3399FF">Mikey.ca</font></H1> 
     <div class = "nav">
       <div class = "container">
@@ -10,6 +8,7 @@
 	</ul>
 	<ul class="pull-right">
 	  <li><a href="#">Sign Up</a></li>
+
 	  <li><a href="login.jsp">Log In</a></li>
  	</ul>
       </div>	
