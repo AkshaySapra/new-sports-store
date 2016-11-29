@@ -16,12 +16,13 @@ public class LoadData
 	
 	public static void loadData() throws Exception
 	{		
-		String url = "jdbc:sqlserver://sql04.ok.ubc.ca:1433;DatabaseName=db_rlawrenc;";
-		String uid = "rlawrenc";
-		String pw = "test";
+		String url = "jdbc:sqlserver://sql04.ok.ubc.ca:1433;DatabaseName=db_kneubaue;";
+		String uid = "kneubaue";
+		String pw = "34742149";
 		
 		System.out.println("Connecting to database.");
 
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection con = DriverManager.getConnection(url, uid, pw);
 				
 		String fileName = "data/order_sql.ddl";
@@ -39,7 +40,7 @@ public class LoadData
 	            String command = scanner.next();
 	            if (command.trim().equals(""))
 	                continue;
-	          //  System.out.println(command);        // Uncomment if want to see commands executed
+	            System.out.println(command);        // Uncomment if want to see commands executed
 	            try
 	            {
 	            	stmt.execute(command);
