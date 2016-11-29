@@ -143,6 +143,7 @@ CREATE TABLE OrderedProduct (
 	oid int,
 	pid int,
 	quantity int,
+	price int,
 	PRIMARY KEY (oid, pid),
 	FOREIGN KEY (oid) REFERENCES Orders (oid)
 		ON DELETE CASCADE ON UPDATE CASCADE,

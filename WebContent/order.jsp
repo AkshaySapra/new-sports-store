@@ -108,7 +108,7 @@ try
                    out.println("</tr>");
                    total = total +pr*qty;
 
-   				sql = "INSERT INTO OrderedProduct VALUES(?, ?, ?, ?)";
+   				sql = "INSERT INTO OrderedProduct (oid, pid, quantity, price) VALUES(?, ?, ?, ?)";
    				pstmt = con.prepareStatement(sql);
    				pstmt.setInt(1, orderId);
    				pstmt.setInt(2, Integer.parseInt(productId));
