@@ -1,4 +1,4 @@
-DROP TABLE OrderProduct;
+DROP TABLE OrderedProduct;
 DROP TABLE Stores;
 DROP TABLE Orders;
 DROP TABLE ProductReview;
@@ -85,6 +85,7 @@ CREATE TABLE Product (
 	price decimal(9,2),
 	catID int,
 	picURL varchar(50),
+	currentlySelling bit,
 	PRIMARY KEY (pid), 
 	FOREIGN KEY (catID) REFERENCES ProductCategory (catID)
 		ON DELETE CASCADE ON UPDATE CASCADE
@@ -92,7 +93,7 @@ CREATE TABLE Product (
 
 
 CREATE TABLE Orders (
-	oid int,
+	oid int IDENTITY,
 	odate date,
 	address varchar(50),
 	city varchar(50),
@@ -138,17 +139,17 @@ CREATE TABLE Stores (
 );
 
 
-CREATE TABLE OrderProduct (
+CREATE TABLE OrderedProduct (
 	oid int,
 	pid int,
 	quantity int,
+	price float,
 	PRIMARY KEY (oid, pid),
 	FOREIGN KEY (oid) REFERENCES Orders (oid)
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (pid) REFERENCES Product (pid)
 		ON DELETE NO ACTION ON UPDATE NO ACTION
 );
-
 
 INSERT INTO ProductCategory VALUES (1,'Soccer', NULL)
 INSERT INTO ProductCategory VALUES (2,'Rugby', NULL)
@@ -158,24 +159,24 @@ INSERT INTO ProductCategory VALUES (5,'Baseball', NULL)
 INSERT INTO ProductCategory VALUES (6,'Hockey', NULL)
 
 
-INSERT INTO Product VALUES (1, 'Soccer Ball', 10, 1, NULL)
-INSERT INTO Product VALUES (2, 'Soccer Cleats', 10, 1, NULL)
-INSERT INTO Product VALUES (3, 'Soccer Gloves', 10, 1, NULL)
-INSERT INTO Product VALUES (4, 'Rugby Ball', 10, 2, NULL)
-INSERT INTO Product VALUES (5, 'Rugby Cleats', 10, 2, NULL)
-INSERT INTO Product VALUES (6, 'Rugby Cap', 10, 2, NULL)
-INSERT INTO Product VALUES (7, 'Basketball', 10, 3, NULL)
-INSERT INTO Product VALUES (8, 'Basketball Shoes', 10, 3, NULL)
-INSERT INTO Product VALUES (9, 'Basketball Hoop', 10, 3, NULL)
-INSERT INTO Product VALUES (10, 'Curling Rock', 10, 4, NULL)
-INSERT INTO Product VALUES (11, 'Curling Shoes', 10, 4, NULL)
-INSERT INTO Product VALUES (12, 'Curling Broom', 10, 4, NULL)
-INSERT INTO Product VALUES (13, 'Baseball', 10, 5, NULL)
-INSERT INTO Product VALUES (14, 'Baseball Cleats', 10, 5, NULL)
-INSERT INTO Product VALUES (15, 'Baseball Bat', 10, 5, NULL)
-INSERT INTO Product VALUES (16, 'Hockey Puck', 10, 6, NULL)
-INSERT INTO Product VALUES (17, 'Hockey Stick', 10, 6, NULL)
-INSERT INTO Product VALUES (18, 'Hockey Skates', 10, 6, NULL) 
+INSERT INTO Product VALUES (1, 'Soccer Ball', 10, 1, NULL, 1)
+INSERT INTO Product VALUES (2, 'Soccer Cleats', 10, 1, NULL, 1)
+INSERT INTO Product VALUES (3, 'Soccer Gloves', 10, 1, NULL, 1)
+INSERT INTO Product VALUES (4, 'Rugby Ball', 10, 2, NULL, 1)
+INSERT INTO Product VALUES (5, 'Rugby Cleats', 10, 2, NULL, 1)
+INSERT INTO Product VALUES (6, 'Rugby Cap', 10, 2, NULL, 1)
+INSERT INTO Product VALUES (7, 'Basketball', 10, 3, NULL, 1)
+INSERT INTO Product VALUES (8, 'Basketball Shoes', 10, 3, NULL, 1)
+INSERT INTO Product VALUES (9, 'Basketball Hoop', 10, 3, NULL, 1)
+INSERT INTO Product VALUES (10, 'Curling Rock', 10, 4, NULL, 1)
+INSERT INTO Product VALUES (11, 'Curling Shoes', 10, 4, NULL, 1)
+INSERT INTO Product VALUES (12, 'Curling Broom', 10, 4, NULL, 1)
+INSERT INTO Product VALUES (13, 'Baseball', 10, 5, NULL, 1)
+INSERT INTO Product VALUES (14, 'Baseball Cleats', 10, 5, NULL, 1)
+INSERT INTO Product VALUES (15, 'Baseball Bat', 10, 5, NULL, 1)
+INSERT INTO Product VALUES (16, 'Hockey Puck', 10, 6, NULL, 1)
+INSERT INTO Product VALUES (17, 'Hockey Stick', 10, 6, NULL, 1)
+INSERT INTO Product VALUES (18, 'Hockey Skates', 10, 6, NULL, 1) 
 
 
 INSERT INTO UserGroup VALUES (1, 'Manager')
@@ -191,8 +192,8 @@ INSERT INTO ShippingOption VALUES (2, 'Goose', 25)
 INSERT INTO ShippingOption VALUES (3, 'Canoe/Portage', 50)
 
 
-INSERT INTO Users VALUES (1, 1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'passs')
-INSERT INTO Users VALUES (2, 1, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'passss')
+INSERT INTO Users VALUES (1, 1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'a')
+INSERT INTO Users VALUES (2, 1, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'b')
 
 
 INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890)
@@ -239,9 +240,9 @@ INSERT INTO Stores VALUES ('Warehouse B', 17, 123)
 INSERT INTO Stores VALUES ('Warehouse B', 18, 45)
 
 
-INSERT INTO Orders VALUES (1, '2015-10-04', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
+INSERT INTO Orders VALUES ('2015-10-04', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
 
 
-INSERT INTO OrderProduct VALUES (1, 1, 2)
-INSERT INTO OrderProduct VALUES (1, 2, 1)
+INSERT INTO OrderedProduct VALUES (1, 1, 2, 55.0)
+INSERT INTO OrderedProduct VALUES (1, 2, 1, 33.0)
 

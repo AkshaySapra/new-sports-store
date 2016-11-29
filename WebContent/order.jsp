@@ -46,9 +46,10 @@ try
 		// Get database connection
         getConnection();
 	                		
-        String sql = "SELECT customerId, cname, password FROM Customer WHERE customerId = ?";	
+        /* String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	 */
+        String sql = "SELECT UserID, fname, lname, password FROM Users WHERE UserID = ?";
 				      
-   		con = DriverManager.getConnection(url, uid, pwd);
+   		/* con = DriverManager.getConnection(url, uid, pwd); */
    		PreparedStatement pstmt = con.prepareStatement(sql);
    		pstmt.setInt(1, num);
    		ResultSet rst = pstmt.executeQuery();
@@ -62,7 +63,9 @@ try
    		else
    		{	
    			custName = rst.getString(2);
-			String dbpassword = rst.getString(3);
+			String dbpassword = rst.getString("password");
+			out.print("dbpassword is: " + dbpassword);
+			out.print("password is: " + password);
 				    		
 			// make sure the password on the database is the same as the one the user entered
 			if (!dbpassword.equals(password)) 
@@ -72,7 +75,7 @@ try
 			}
 		
    			// Enter order information into database
-   			sql = "INSERT INTO Orders (customerId, totalAmount) VALUES(?, 0);";
+   			sql = "INSERT INTO Orders (UserID, TotalAmount) VALUES(?, 0);";
 
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -105,12 +108,12 @@ try
                    out.println("</tr>");
                    total = total +pr*qty;
 
-   				sql = "INSERT INTO OrderedProduct VALUES(?, ?, ?, ?)";
+   				sql = "INSERT INTO OrderedProduct (oid, pid, quantity, price) VALUES( ?, ?, ?, ?)";
    				pstmt = con.prepareStatement(sql);
-   				pstmt.setInt(1, orderId);
+   			 	pstmt.setInt(1, orderId); 
    				pstmt.setInt(2, Integer.parseInt(productId));
    				pstmt.setInt(3, qty);
-   				pstmt.setString(4, price);
+   				pstmt.setDouble(4, Double.parseDouble(price));
    				pstmt.executeUpdate();				
            	}
            	out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td>"
@@ -118,7 +121,7 @@ try
            	out.println("</table>");
 
    			// Update order total
-   			sql = "UPDATE Orders SET totalAmount=? WHERE orderId=?";
+   			sql = "UPDATE Orders SET TotalAmount=? WHERE oid=?";
    			pstmt = con.prepareStatement(sql);
    			pstmt.setDouble(1, total);
    			pstmt.setInt(2, orderId);			
