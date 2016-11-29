@@ -192,8 +192,8 @@ INSERT INTO ShippingOption VALUES (2, 'Goose', 25)
 INSERT INTO ShippingOption VALUES (3, 'Canoe/Portage', 50)
 
 
-INSERT INTO Users VALUES (1, 1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'passs')
-INSERT INTO Users VALUES (2, 1, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'passss')
+INSERT INTO Users VALUES (1, 1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'a')
+INSERT INTO Users VALUES (2, 1, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'b')
 
 
 INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890)

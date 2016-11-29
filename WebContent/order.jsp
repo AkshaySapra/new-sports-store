@@ -16,7 +16,7 @@
 
 <%
 // Get customer id
-String custId = request.getParameter("UserID");
+String custId = request.getParameter("customerId");
 // Get password
 String password = request.getParameter("password");
 // Get shopping cart
@@ -46,7 +46,8 @@ try
 		// Get database connection
         getConnection();
 	                		
-        String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	
+        /* String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	 */
+        String sql = "SELECT UserID, fname, lname, password FROM Users WHERE UserID = ?";
 				      
    		/* con = DriverManager.getConnection(url, uid, pwd); */
    		PreparedStatement pstmt = con.prepareStatement(sql);
