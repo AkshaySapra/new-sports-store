@@ -13,6 +13,7 @@
 	<h1>Enter your customer id and password to complete the
 		transaction:</h1>
 
+<form method="post" action="order.jsp">
 	<%
 		out.print("Welcome to Mikey");
 		String authenticatedUser = (String) session.getAttribute("authenticatedUser");
@@ -26,16 +27,18 @@
 		}
 
 		String sql = "SELECT TypeName, TypeID FROM ShippingOption;";
-		out.print("<form action=\"post\">");
+/* 		out.print("<form action=\"post\" action=\"order.jsp\">"); */
 		StringBuilder shipOptionBuilder = new StringBuilder("");
 		try {
 			getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rst = pstmt.executeQuery();
 			while(rst.next()){
-				  out.print("<input type=\"radio\" name=\"TypeName\" value=\"" + rst.getString("TypeID") + "\">" + rst.getString("TypeName") + "<br>");
+				  out.print("<input type=\"radio\" name=\"TypeID\" value=\"" + rst.getString("TypeID") + "\">" + rst.getString("TypeName") +  "<br>");
 			}
-			out.print("</form>");
+			out.println("");
+			out.print("<td><input type=\"submit\" value=\"Submit\"></td>");
+	/* 		out.print("</form>"); */
 				
 			closeConnection();
 		} catch (SQLException ex) {
@@ -45,9 +48,10 @@
 		
 		
 	%>
-	<form method="post" action="order.jsp">
-		<td><input type="submit" value="Submit"></td>
 	</form>
+	
+		
+
 	<!-- <form method="post" action="order.jsp">
 		<table>
 			<tr>
