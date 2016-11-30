@@ -27,13 +27,13 @@
 	<h2>The evolution of sporting is here!</h2>
 	<div class="row">
 	  <div class="col-md-4">
-	    <div class="thumbnail"><img src="Shoe.jpg"></div>
+	    <div class="thumbnail"><img src="images/Shoe.jpg"></div>
 	  </div>
 	  <div class="col-md-4">
-	    <div class="thumbnail"><img src="gloves.jpg"></div>
+	    <div class="thumbnail"><img src="images/gloves.jpg"></div>
 	  </div>
 	  <div class="col-md-4">
-	    <div class="thumbnail"><img src="Lebron.png"></div>
+	    <div class="thumbnail"><img src="images/Lebron.png"></div>
 	  </div>
         </div>
        <bottom>

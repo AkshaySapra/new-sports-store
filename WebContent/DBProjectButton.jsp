@@ -9,14 +9,14 @@
 	 getConnection();
 	 PreparedStatement pstmt = con.prepareStatement(SQL); 
 	 ResultSet rst = pstmt.executeQuery();
-	 out.print("<table border = \"0\" width = \"100px\"><tr>");
+	 out.print("<table border = \"1\" width = \"100px\"><tr>");
 	 while(rst.next()){ 
-	  out.println("<form action=\"product.jsp?catid=" + rst.getInt(1) + ">");
-    	   out.print("<td><input type = \"submit\" value =" + rst.getString(2) + "style: \"background: url(" + rst.getString(3) + ");width:464px;height:301px;\"/></td>");
-	  out.println("</form>");
+    	   out.print("<td><input type =button OnClick=\"location.href='product.jsp?catid=" + rst.getInt(1) + "'\" value =\"" + rst.getString(2) + "\" button style= \"background: url(" + rst.getString(3) + ");width:464px;height:301px;\"/></td>");
 	  count++;
-	  if(count == 4)
+	  if(count == 3){
 	   out.print("</tr><tr>");
+	   count = 0;
+	  }
  	 }
 	 out.print("<p>sADSADsa</p>");
 	out.print("</tr>");
