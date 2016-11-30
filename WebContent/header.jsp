@@ -12,13 +12,14 @@
 			<li><a href="#">Sign Up</a></li>
 			<%
 				String authenticatedUser = (String) session.getAttribute("authenticatedUser");
-				out.print("authenticatedUser is: " + authenticatedUser);
+
 				if (authenticatedUser == null || authenticatedUser == "") {
 					out.print("<li><a href=\"login.jsp\">Log In</a></li>");
 				} else {
 					out.print("<li><a href=\"destroySession.jsp\">Log Out</a></li>");
 				}
 			%>
+			
 
 		</ul>
 	</div>

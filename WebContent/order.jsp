@@ -16,7 +16,9 @@
 
 <%
 // Get customer id
-String custId = request.getParameter("customerId");
+/* String custId = request.getParameter("customerId"); */
+String custId = authenticatedUser;
+
 // Get password
 String password = request.getParameter("password");
 // Get shopping cart
@@ -67,12 +69,12 @@ try
 			out.print("dbpassword is: " + dbpassword);
 			out.print("password is: " + password);
 				    		
-			// make sure the password on the database is the same as the one the user entered
+			/* // make sure the password on the database is the same as the one the user entered
 			if (!dbpassword.equals(password)) 
 			{
 				out.println("The password you entered was not correct.  Please go back and try again.<br>"); 
 				return;
-			}
+			} */
 		
    			// Enter order information into database
    			sql = "INSERT INTO Orders (UserID, TotalAmount) VALUES(?, 0);";
@@ -152,7 +154,7 @@ finally
 }  
 %>                       				
 
-<h2><a href="shop.html">Back to Main Page</a></h2>
+<h2><a href="Home.jsp">Back to Main Page</a></h2>
 
 </body>
 </html>

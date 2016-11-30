@@ -12,7 +12,6 @@
  </head>
   <body>
   <%@ include file="header.jsp"%>
-<%out.print("<li><a href=\"destroySession.jsp\">Log Out</a></li>"); %>
     <div class = "top">
      <div class = "container">
       <div class="text-center">

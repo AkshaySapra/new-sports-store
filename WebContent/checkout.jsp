@@ -12,7 +12,7 @@
 		String authenticatedUser = (String) session.getAttribute("authenticatedUser");
 		if (authenticatedUser == null || authenticatedUser == "") {
 			out.print("You are not logged in properly.");
-			out.print("<form method=\"get\" action=\"login.jsp\">");
+			response.sendRedirect("login.jsp");
 		}
 
 		else {
@@ -20,8 +20,8 @@
 		}
 	%>
 
-
-	<form method="post" action="order.jsp">
+<form method="post" action="order.jsp"><td><input type="submit" value="Submit"></td></form>
+	<!-- <form method="post" action="order.jsp">
 		<table>
 			<tr>
 				<td>Customer ID:</td>
@@ -36,7 +36,7 @@
 				<td><input type="reset" value="Reset"></td>
 			</tr>
 		</table>
-	</form>
+	</form> -->
 
 </body>
 </html>
