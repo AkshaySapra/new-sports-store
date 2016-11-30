@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
+ <title>Mikey.ca | About</title>
  <link href="shift.css" rel="stylesheet">
  <link href="bootstrap.css" rel="stylesheet">
  <link href="second.css" rel="stylesheet">

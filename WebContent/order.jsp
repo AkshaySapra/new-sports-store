@@ -7,9 +7,12 @@
 <%@ include file="jdbc.jsp" %>
 
 <html>
-<head>
-<title>Ray's Grocery Order Processing</title>
-</head>
+<HEAD>
+<TITLE>Mikey.ca | Order Processing</TITLE>
+ <link href="shift.css" rel="stylesheet">
+ <link href="bootstrap.css" rel="stylesheet">
+ <link href="main.css" rel="stylesheet">
+</HEAD>
 <body>
         
 <%@ include file="header.jsp" %>
@@ -17,7 +20,6 @@
 <%
 // Get customer id
 /* String custId = request.getParameter("customerId"); */
-String custId = authenticatedUser;
 int TypeID = Integer.parseInt(request.getParameter("TypeID"));  
 
 // Get password
@@ -28,9 +30,9 @@ HashMap<String, ArrayList<Object>> productList = (HashMap<String, ArrayList<Obje
                 
 try 
 {	
-	if (custId == null || custId.equals(""))
+	if (authenticatedUser == null || authenticatedUser.equals(""))
 		out.println("<h1>Invalid customer id.  Go back to the previous page and try again.</h1>");
-	else if (productList == null)
+	else if (productList == null || productList.isEmpty())
 		out.println("<h1>Your shopping cart is empty!</h1>");
 	else
 	{	
@@ -38,7 +40,7 @@ try
 		int num=-1;
 		try
 		{
-			num = Integer.parseInt(custId);
+			num = Integer.parseInt(authenticatedUser);
 		} 
 		catch(Exception e)
 		{
@@ -67,8 +69,6 @@ try
    		{	
    			custName = rst.getString(2);
 			String dbpassword = rst.getString("password");
-			out.print("dbpassword is: " + dbpassword);
-			out.print("password is: " + password);
 				    		
 			/* // make sure the password on the database is the same as the one the user entered
 			if (!dbpassword.equals(password)) 
@@ -133,7 +133,7 @@ try
 
    			out.println("<h1>Order completed.  Will be shipped soon...</h1>");
    			out.println("<h1>Your order reference number is: "+orderId+"</h1>");
-   			out.println("<h1>Shipping to customer: "+custId+" Name: "+custName+"</h1>");
+   			out.println("<h1>Shipping to customer: "+authenticatedUser+" Name: "+custName+"</h1>");
 
    			// Clear session variables (cart)
    			session.setAttribute("productList", null);    

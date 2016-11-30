@@ -32,7 +32,7 @@ String update = request.getParameter("update");
 String newqty = request.getParameter("newqty");
 
 // check if shopping cart is empty
-if (productList == null)
+if (productList == null || productList.isEmpty())
 {	out.println("<H1>Your shopping cart is empty!</H1>");
 	productList = new HashMap();
 }
@@ -49,15 +49,26 @@ else
 	
 	// if update isn't null, the user is trying to update the quantity
 	if(update != null && (!update.equals(""))) {
-		if (productList.containsKey(update)) { // find item in shopping cart
-			product = (ArrayList) productList.get(update);
-			product.set(3, (new Integer(newqty))); // change quantity to new quantity
+		try {
+			int num = Integer.parseInt(newqty);
+			if (productList.containsKey(update)) { // find item in shopping cart
+				if (num > 0) {
+					product = (ArrayList) productList.get(update);
+					product.set(3, (new Integer(newqty))); // change quantity to new quantity
+				} else {
+					productList.remove(update);
+				}
+			}
+			else {
+				productList.put(id,product);
+			}
 		}
-		else {
-			productList.put(id,product);
-		}
+		catch (Exception e) {}
 	}
-
+	if (productList.isEmpty()) {
+		out.println("<H1>Your shopping cart is empty!</H1>");
+	}
+	else {
 	// print out HTML to print out the shopping cart
 	out.println("<H1>Your Shopping Cart</H1>");
 	out.print("<TABLE><TR><TH>Product Id</TH><TH>Product Name</TH><TH>Quantity</TH>");
@@ -103,6 +114,7 @@ else
 // set the shopping cart
 session.setAttribute("productList", productList);
 // give the customer the option to add more items to their shopping cart
+}
 %>
 <H2><A HREF="listprod.jsp">Continue Shopping</A></H2>
 </FORM>

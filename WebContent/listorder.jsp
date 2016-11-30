@@ -3,12 +3,13 @@
 
 <html>
 <head>
-<title>Ray's Grocery Order List</title>
-
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<title>Mikey.ca | List Orders</title>
+ <link href="shift.css" rel="stylesheet">
+ <link href="bootstrap.css" rel="stylesheet">
+ <link href="second.css" rel="stylesheet">
 </head>
 <body>
-
+<%@ include file="header.jsp" %>
 <h1>Order List</h1>
 
 <%

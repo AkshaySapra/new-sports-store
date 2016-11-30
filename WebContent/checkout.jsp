@@ -28,14 +28,14 @@
 					try {
 						num = Integer.parseInt(authenticatedUser);
 					}
-					catch (Exception e) {
-						out.println(e);
+					catch (Exception e) {}
+					if (num != -1) {
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1,num);
+						ResultSet rst = pstmt.executeQuery();
+						if (rst.next())
+							out.println("You are logged in as " + rst.getString("fname") + " " + rst.getString("lname"));
 					}
-					PreparedStatement pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1,num);
-					ResultSet rst = pstmt.executeQuery();
-					if (rst.next())
-						out.println("You are logged in as " + rst.getString("fname") + " " + rst.getString("lname"));
 					closeConnection();
 				}
 				catch (SQLException e) {

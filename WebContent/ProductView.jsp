@@ -1,10 +1,12 @@
 <%@ include file="jdbc.jsp"%>
 <!DOCTYPE html>
 <html>
+<HEAD>
+<TITLE>Mikey.ca | View Products</TITLE>
  <link href="shift.css" rel="stylesheet">
  <link href="bootstrap.css" rel="stylesheet">
  <link href="second.css" rel="stylesheet">
- </head>
+</HEAD>
   <body>
  <%@ include file="header.jsp"%>
  <%	
