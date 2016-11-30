@@ -16,7 +16,7 @@
 				if (authenticatedUser == null || authenticatedUser == "") {
 					out.print("<li><a href=\"login.jsp\">Log In</a></li>");
 				} else {
-					out.print("<li><a href=\"logout.jsp\">Log Out</a></li>");
+					out.print("<li><a href=\"destroySession.jsp\">Log Out</a></li>");
 				}
 			%>
 
