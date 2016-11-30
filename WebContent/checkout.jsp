@@ -7,13 +7,11 @@
 <html>
 <head>
 <title>Checkout</title>
+ <link href="shift.css" rel="stylesheet">
+ <link href="bootstrap.css" rel="stylesheet">
+ <link href="second.css" rel="stylesheet">
 </head>
 <body>
-
-	<h1>Enter your customer id and password to complete the
-		transaction:</h1>
-
-	<br>
 
 	<%
 			

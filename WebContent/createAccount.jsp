@@ -5,8 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mikey.ca | Create Account</title>
+ <link href="shift.css" rel="stylesheet">
+ <link href="bootstrap.css" rel="stylesheet">
+ <link href="second.css" rel="stylesheet">
 </head>
 <body>
+<%@ include file="header.jsp"%>
 <h1>Enter your information:</h1>
 <form method="post" action="CustomerAdd.jsp">
 <h2>Email:</h2>
@@ -25,6 +29,9 @@
 <br>
 <h2>City:</h2>
 <input type="text" name="city" size="50">
+<br>
+<h2>Postal Code:</h2>
+<input type="text" name="postalcode" size="50">
 <br>
 <h2>Province:</h2>
 <select size="1" name="province">
