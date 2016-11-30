@@ -94,7 +94,7 @@ CREATE TABLE Product (
 
 CREATE TABLE Orders (
 	oid int IDENTITY,
-	odate date,
+	odate datetime,
 	address varchar(50),
 	city varchar(50),
 	province varchar(3),
