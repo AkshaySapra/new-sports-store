@@ -7,6 +7,7 @@
 <title>Mikey.ca | Create Account</title>
  <link href="shift.css" rel="stylesheet">
  <link href="bootstrap.css" rel="stylesheet">
+ <link href="main.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="header.jsp"%>

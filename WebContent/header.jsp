@@ -6,7 +6,8 @@
 		<ul class="pull-left">
 			<li><a href="Home.jsp">Home</a></li>
 			<li><a href="About.jsp">About</a></li>
-			<li><a href="listprod.jsp">Shop</a></li>
+			<li><a href="listprod.jsp">List Products</a></li>
+			<li><a href="categories.jsp">Choose Category</a></li>
 		</ul>
 		<ul class="pull-right">
 			<li><a href="showcart.jsp">View Cart</a></li>
