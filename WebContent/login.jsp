@@ -55,7 +55,7 @@ String loginMessage = (String) session.getAttribute("loginMessage");
 			}
 			catch (Exception e)
 			{
-				session.setAttribute("authenticatedUser",null);
+				session.setAttribute("authenticatedUser", null);
 			}
 			if (num != -1)
 			pstmt.setInt(1, num);
