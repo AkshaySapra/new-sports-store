@@ -9,7 +9,7 @@
 			<li><a href="listprod.jsp">Shop</a></li>
 		</ul>
 		<ul class="pull-right">
-			<li><a href="#">Sign Up</a></li>
+			<li><a href="createAccount.jsp">Sign Up</a></li>
 			<%
 				String authenticatedUser = (String) session.getAttribute("authenticatedUser");
 
