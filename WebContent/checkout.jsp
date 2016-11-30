@@ -1,3 +1,9 @@
+<%@ page import="java.sql.*"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.text.NumberFormat"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
+<%@ include file="jdbc.jsp"%>
+
 <html>
 <head>
 <title>Ray's Grocery</title>
@@ -18,9 +24,30 @@
 		else {
 			out.print("You are logged in as " + authenticatedUser);
 		}
-	%>
 
-<form method="post" action="order.jsp"><td><input type="submit" value="Submit"></td></form>
+		String sql = "SELECT TypeName FROM ShippingOption;";
+		out.print("<form action=\"post\">");
+		StringBuilder shipOptionBuilder = new StringBuilder("");
+		try {
+			getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rst = pstmt.executeQuery();
+			while(rst.next()){
+				  out.print("<input type=\"radio\" name=\"TypeName\" value=\"" + rst.getString(1) + "\">" + rst.getString(1) + "<br>");
+			}
+			out.print("</form>");
+				
+			closeConnection();
+		} catch (SQLException ex) {
+			out.println(ex);
+		}
+		
+		
+		
+	%>
+	<form method="post" action="order.jsp">
+		<td><input type="submit" value="Submit"></td>
+	</form>
 	<!-- <form method="post" action="order.jsp">
 		<table>
 			<tr>
