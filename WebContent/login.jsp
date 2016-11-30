@@ -17,7 +17,7 @@
 
 <%
 @SuppressWarnings({"unchecked"})
-String authenticatedUser = (String) session.getAttribute("authenticatedUser");
+/* String authenticatedUser = (String) session.getAttribute("authenticatedUser"); */
 String loginMessage = (String) session.getAttribute("loginMessage");
 
 		if (loginMessage!=null)
