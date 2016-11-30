@@ -83,7 +83,7 @@ try
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
    			pstmt.setInt(1, num);
-   			pstmt.setInt(3, TypeID);
+   			pstmt.setInt(2, TypeID);
    			pstmt.executeUpdate();
    			ResultSet keys = pstmt.getGeneratedKeys();
    			keys.next();
