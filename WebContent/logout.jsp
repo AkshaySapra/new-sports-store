@@ -1,8 +1,13 @@
+<html>
+<head>
+<title>logout</title>
+</head>
+<body>
 
 <% 
-/* session.removeAttribute("authenticatedUser"); */
-session.invalidate();
-response.sendRedirect(request.getContextPath() + "/Home.jsp");
+System.out.println("logging out");
+request.getSession().invalidate();
+
 
 %>
 
