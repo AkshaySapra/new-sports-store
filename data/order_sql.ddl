@@ -151,12 +151,12 @@ CREATE TABLE OrderedProduct (
 		ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-INSERT INTO ProductCategory VALUES (1,'Soccer', NULL)
-INSERT INTO ProductCategory VALUES (2,'Rugby', NULL)
-INSERT INTO ProductCategory VALUES (3,'Basketball', NULL)
-INSERT INTO ProductCategory VALUES (4,'Curling', NULL)
-INSERT INTO ProductCategory VALUES (5,'Baseball', NULL)
-INSERT INTO ProductCategory VALUES (6,'Hockey', NULL)
+INSERT INTO ProductCategory VALUES (1,'Soccer', 'images/Mike Soccer.png')
+INSERT INTO ProductCategory VALUES (2,'Rugby', 'images/Mike Rugby.png')
+INSERT INTO ProductCategory VALUES (3,'Basketball', 'images/Mike Basketball.png')
+INSERT INTO ProductCategory VALUES (4,'Curling', 'images/Mike Curling.png')
+INSERT INTO ProductCategory VALUES (5,'Baseball', 'images/Mike Baseball.png')
+INSERT INTO ProductCategory VALUES (6,'Hockey', 'images/Mike Hockey.png')
 
 
 INSERT INTO Product VALUES (1, 'Soccer Ball', 10, 1, NULL, 1)
