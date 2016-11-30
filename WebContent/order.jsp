@@ -52,7 +52,7 @@ try
         getConnection();
 	                		
         /* String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	 */
-        String sql = "SELECT UserID, fname, lname, password FROM Users WHERE UserID = ?";
+        String sql = "SELECT UserID, fname, lname, password, address, city, province, postalcode FROM Users WHERE UserID = ?";
 				      
    		/* con = DriverManager.getConnection(url, uid, pwd); */
    		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -67,7 +67,7 @@ try
    		}
    		else
    		{	
-   			custName = rst.getString(2);
+   			custName = rst.getString("fname") + " " + rst.getString("lname");
 			String dbpassword = rst.getString("password");
 				    		
 			/* // make sure the password on the database is the same as the one the user entered
@@ -76,14 +76,19 @@ try
 				out.println("The password you entered was not correct.  Please go back and try again.<br>"); 
 				return;
 			} */
-		
+			
    			// Enter order information into database
-   			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID) VALUES(?, 0, ?);";
-
+   			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID, odate, address, city, province, postalcode) VALUES(?, 0, ?, ?, ?, ?, ?, ?);";
+			java.sql.Date oDate = new java.sql.Date(System.currentTimeMillis());
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
    			pstmt.setInt(1, num);
    			pstmt.setInt(2, TypeID);
+			pstmt.setDate(3, oDate);
+			pstmt.setString(4, rst.getString("address"));
+			pstmt.setString(5, rst.getString("city"));
+			pstmt.setString(6, rst.getString("province"));
+			pstmt.setString(7, rst.getString("postalcode"));
    			pstmt.executeUpdate();
    			ResultSet keys = pstmt.getGeneratedKeys();
    			keys.next();
