@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Enter your information:</h1>
-<form method="post" action="#.jsp">
+<form method="post" action="CustomerAdd.jsp">
 <h2>Email:</h2>
 <input type="text" name="email" size="50">
 <h2>First Name:</h2>
