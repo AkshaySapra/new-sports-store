@@ -17,7 +17,7 @@
      <div class = "container">
       <div class="text-center">
        <h1>Mikey</h1>
-       <p>Don't limit your body! fdsfsdfds</p>
+       <p>Don't limit your body! </p>
        	
       </div>
      </div>
