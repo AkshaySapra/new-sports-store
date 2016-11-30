@@ -25,7 +25,7 @@
 			out.print("You are logged in as " + authenticatedUser);
 		}
 
-		String sql = "SELECT TypeName FROM ShippingOption;";
+		String sql = "SELECT TypeName, TypeID FROM ShippingOption;";
 		out.print("<form action=\"post\">");
 		StringBuilder shipOptionBuilder = new StringBuilder("");
 		try {
@@ -33,7 +33,7 @@
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rst = pstmt.executeQuery();
 			while(rst.next()){
-				  out.print("<input type=\"radio\" name=\"TypeName\" value=\"" + rst.getString(1) + "\">" + rst.getString(1) + "<br>");
+				  out.print("<input type=\"radio\" name=\"TypeName\" value=\"" + rst.getString("TypeID") + "\">" + rst.getString("TypeName") + "<br>");
 			}
 			out.print("</form>");
 				

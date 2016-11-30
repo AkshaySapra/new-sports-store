@@ -18,6 +18,7 @@
 // Get customer id
 /* String custId = request.getParameter("customerId"); */
 String custId = authenticatedUser;
+int TypeID = Integer.parseInt(request.getParameter("TypeID"));  
 
 // Get password
 String password = request.getParameter("password");
@@ -77,11 +78,12 @@ try
 			} */
 		
    			// Enter order information into database
-   			sql = "INSERT INTO Orders (UserID, TotalAmount) VALUES(?, 0);";
+   			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID) VALUES(?, 0, ?);";
 
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
    			pstmt.setInt(1, num);
+   			pstmt.setInt(3, TypeID);
    			pstmt.executeUpdate();
    			ResultSet keys = pstmt.getGeneratedKeys();
    			keys.next();
