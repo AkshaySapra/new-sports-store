@@ -11,7 +11,10 @@
    <div class = "intro">
     <div class = "container">
      <h2>We just did it!</h2>
-     <p>I'll write an inspirational paragraph here when I'm feeling more creative. For now, spaces! <br>spam spam <br>spam spam <br>spam spam <br>spam spam <br>spam spam <br>spam spam</p>
+     	<p>As producers of sports equipment since 1963, Mikey is committed to being a leader and a trendsetter in the sporting market. Despite being the victim of blatant copycats, Mikey remains dedicated to coming up with original ideas in addition to retaining the core business ideas used by all great sports companies. When it comes to making our products, Mikey creates great career opportunities for even the youngest members of societies in our many production facilities located throughout the world. From these facilities, products are sent to one of our two warehouses located in Canada, where they are then added to are added to our incredibly sophisticated inventory system. The products then become available to order and, once an order is placed, our sent to the customer through one of our culture rich shipping options!<br><br></p>
+
+<h3>You are going to like-y Mikey!</h3>
+
     </div>
    </div>
 
