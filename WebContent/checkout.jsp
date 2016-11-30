@@ -12,19 +12,37 @@
  <link href="second.css" rel="stylesheet">
 </head>
 <body>
-
-	<%
-			
-			String authenticatedUser = (String) session.getAttribute("authenticatedUser");
+<%@ include file="header.jsp"%>
+	<%			
+			authenticatedUser = (String) session.getAttribute("authenticatedUser");
 			if (authenticatedUser == null || authenticatedUser == "") {
 				out.print("You are not logged in properly.");
 				response.sendRedirect("login.jsp");
 			}
 
 			else {
-				out.println("You are logged in as " + authenticatedUser);
+				try {
+					getConnection();
+					String sql = "SELECT fname, lname FROM Users WHERE UserID = ?";
+					int num = -1;
+					try {
+						num = Integer.parseInt(authenticatedUser);
+					}
+					catch (Exception e) {
+						out.println(e);
+					}
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1,num);
+					ResultSet rst = pstmt.executeQuery();
+					if (rst.next())
+						out.println("You are logged in as " + rst.getString("fname") + " " + rst.getString("lname"));
+					closeConnection();
+				}
+				catch (SQLException e) {
+					out.println(e);
+				}
 			}
-			out.println("\n Select your shipping option below:");
+			out.println("<br>\n Select your shipping option below:");
 		%>
 
 	<form method="post" action="order.jsp">
@@ -38,11 +56,11 @@
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rst = pstmt.executeQuery();
 				while (rst.next()) {
-					out.print("<input type=\"radio\" name=\"TypeID\" value=\"" + rst.getString("TypeID") + "\">"
+					out.println("<input type=\"radio\" name=\"TypeID\" value=\"" + rst.getString("TypeID") + "\">"
 							+ rst.getString("TypeName") + "<br>");
 				}
-				out.println("");
-				out.print("<td><input type=\"submit\" value=\"Submit\"></td>");
+				out.println("<br>");
+				out.println("<input type=\"submit\" value=\"Submit\">");
 				/* 		out.print("</form>"); */
 
 				closeConnection();
