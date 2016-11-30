@@ -12,7 +12,7 @@
 		 ResultSet rst = pstmt.executeQuery();
 		 out.print("<table border = \"1\" width = \"1000px\"><tr>");
 		 while(rst.next()){ 
-	    	   out.print("<td><input type =button OnClick=\"location.href='addcart.jsp?catid=" + rst.getInt(1) + "&name=" + rst.getString(2) + "&price=" + rst.getDouble(3) + "'\" value =\"" + rst.getString(2) + "\" button style= \"background: url(" + rst.getString(3) + ");width:464px;height:301px;\"/></td>");
+	    	   out.print("<td><input type =button OnClick=\"location.href='addcart.jsp?id=" + rst.getInt("pid") + "&name=" + rst.getString("pname") + "&price=" + rst.getDouble("price") + "'\" value =\"" + rst.getString(2) + "\" button style= \"background: url(" + rst.getString(3) + ");width:464px;height:301px;\"/></td>");
 		  count++;
 		  if(count == 3){
 		   out.print("</tr><tr>");

@@ -7,6 +7,9 @@
 <HTML>
 <HEAD>
 <TITLE>Your Shopping Cart</TITLE>
+ <link href="shift.css" rel="stylesheet">
+ <link href="bootstrap.css" rel="stylesheet">
+ <link href="main.css" rel="stylesheet">
 </HEAD>
 <BODY>
 
