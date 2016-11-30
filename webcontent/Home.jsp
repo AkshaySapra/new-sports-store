@@ -12,12 +12,13 @@
  </head>
   <body>
   <%@ include file="header.jsp"%>
-
+<%out.print("<li><a href=\"logout.jsp\">Log Out</a></li>"); %>
     <div class = "top">
      <div class = "container">
       <div class="text-center">
        <h1>Mikey</h1>
-       <p>Don't limit your body!</p>	
+       <p>Don't limit your body!</p>
+       	
       </div>
      </div>
     </div>
