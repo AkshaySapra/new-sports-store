@@ -1,7 +1,12 @@
 <%@ include file="jdbc.jsp"%>
 <!DOCTYPE html>
 <html>
- <body>
+ <link href="shift.css" rel="stylesheet">
+ <link href="bootstrap.css" rel="stylesheet">
+ <link href="second.css" rel="stylesheet">
+ </head>
+  <body>
+ <%@ include file="header.jsp"%>
  <%	
 	String SQL = "SELECT catID, catName, catURL FROM ProductCategory";
 	try{
@@ -11,7 +16,7 @@
 	 ResultSet rst = pstmt.executeQuery();
 	 out.print("<table border = \"1\" width = \"1000px\"><tr>");
 	 while(rst.next()){ 
-    	   out.print("<td><input type =button OnClick=\"location.href='ProductView.jsp?catid=" + rst.getInt(1) + "'\" value =\"" + rst.getString(2) + "\" button style= \"background: url(" + rst.getString(3) + ");width:464px;height:301px;\"/></td>");
+    	   out.print("<td><input type =button OnClick=\"location.href='ProductView.jsp?catid=" + rst.getInt("catID") + "'\" value =\"" + rst.getString("catName") + "\" button style= \"background: url(" + rst.getString("catURL") + ");width:464px;height:301px;\"/></td>");
 	  count++;
 	  if(count == 3){
 	   out.print("</tr><tr>");
