@@ -6,51 +6,55 @@
 
 <html>
 <head>
-<title>Ray's Grocery</title>
+<title>Checkout</title>
 </head>
 <body>
 
 	<h1>Enter your customer id and password to complete the
 		transaction:</h1>
 
-<form method="post" action="order.jsp">
+	<br>
+
 	<%
-		out.print("Welcome to Mikey");
-		String authenticatedUser = (String) session.getAttribute("authenticatedUser");
-		if (authenticatedUser == null || authenticatedUser == "") {
-			out.print("You are not logged in properly.");
-			response.sendRedirect("login.jsp");
-		}
-
-		else {
-			out.print("You are logged in as " + authenticatedUser);
-		}
-
-		String sql = "SELECT TypeName, TypeID FROM ShippingOption;";
-/* 		out.print("<form action=\"post\" action=\"order.jsp\">"); */
-		StringBuilder shipOptionBuilder = new StringBuilder("");
-		try {
-			getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			ResultSet rst = pstmt.executeQuery();
-			while(rst.next()){
-				  out.print("<input type=\"radio\" name=\"TypeID\" value=\"" + rst.getString("TypeID") + "\">" + rst.getString("TypeName") +  "<br>");
+			
+			String authenticatedUser = (String) session.getAttribute("authenticatedUser");
+			if (authenticatedUser == null || authenticatedUser == "") {
+				out.print("You are not logged in properly.");
+				response.sendRedirect("login.jsp");
 			}
-			out.println("");
-			out.print("<td><input type=\"submit\" value=\"Submit\"></td>");
-	/* 		out.print("</form>"); */
-				
-			closeConnection();
-		} catch (SQLException ex) {
-			out.println(ex);
-		}
-		
-		
-		
-	%>
+
+			else {
+				out.println("You are logged in as " + authenticatedUser);
+			}
+			out.println("\n Select your shipping option below:");
+		%>
+
+	<form method="post" action="order.jsp">
+
+		<%
+			String sql = "SELECT TypeName, TypeID FROM ShippingOption;";
+			/* 		out.print("<form action=\"post\" action=\"order.jsp\">"); */
+			StringBuilder shipOptionBuilder = new StringBuilder("");
+			try {
+				getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rst = pstmt.executeQuery();
+				while (rst.next()) {
+					out.print("<input type=\"radio\" name=\"TypeID\" value=\"" + rst.getString("TypeID") + "\">"
+							+ rst.getString("TypeName") + "<br>");
+				}
+				out.println("");
+				out.print("<td><input type=\"submit\" value=\"Submit\"></td>");
+				/* 		out.print("</form>"); */
+
+				closeConnection();
+			} catch (SQLException ex) {
+				out.println(ex);
+			}
+		%>
 	</form>
-	
-		
+
+
 
 	<!-- <form method="post" action="order.jsp">
 		<table>
