@@ -73,7 +73,7 @@
 			}
 		}
 
-		if(retStr != null)
+		if(retStr != null && !retStr.equals(""))
 		{	session.removeAttribute("loginMessage");
 			session.setAttribute("authenticatedUser", username);
 			session.setAttribute("groupID", group);
