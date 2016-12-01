@@ -15,7 +15,7 @@
     <div class = "top">
      <div class = "container">
       <div class="text-center">
-       <h1>Mikey</h1>
+       <h1>Mikeyx</h1>
        <p>Don't limit your body! </p>
        	
       </div>
