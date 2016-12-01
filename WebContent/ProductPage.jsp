@@ -29,7 +29,25 @@ NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 try {	
 			getConnection();
 		
-			String SQL2 = "SELECT pid FROM Product";
+			String SQL2 = "SELECT  picURL FROM Product WHERE pid = ?";
+			PreparedStatement pstmt = con.prepareStatement(SQL2);
+			pstmt.setString(1, id);
+			ResultSet rst = pstmt.executeQuery();
+
+			while (rst.next()) {
+				String URL = rst.getString(1);
+				out.println("<h2 align=\"center\" style=\"color:blue;\">imageurl: " + URL + "</h2>");
+				//out.println("<body background=\""+URL+"\">");
+			}
+			
+			
+
+
+
+			
+			//out.println("<img src=\"images/basketball shoes.JPG\" alt=\"Mountain View\" style=\"width:304px;height:228px;\">");
+	
+
 
 			//keys.next();
 			//int custId = keys.getInt(1);
