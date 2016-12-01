@@ -14,12 +14,16 @@
 			<li><a href="createAccount.jsp">Sign Up</a></li>
 			<%
 				String authenticatedUser = (String) session.getAttribute("authenticatedUser");
+				String groupID = (String) session.getAttribute("groupID");
 
-				if (authenticatedUser == null || authenticatedUser == "") {
+				if (authenticatedUser == null || authenticatedUser.equals("")) {
 					out.print("<li><a href=\"login.jsp\">Log In</a></li>");
 				} else {
+					if (groupID != null && groupID.equals("1"))
+						out.print("<li><a href=\"manage.jsp\">Manage</a></li>");
 					out.print("<li><a href=\"destroySession.jsp\">Log Out</a></li>");
 				}
+				
 			%>
 			
 

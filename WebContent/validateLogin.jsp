@@ -28,6 +28,7 @@
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String retStr = null;
+		String group = null;
 		int num = -1;
 		if(username == null || password == null)
 				return null;
@@ -45,7 +46,7 @@
 		try {
 
 			getConnection();
-			String SQL = "SELECT UserID FROM Users WHERE UserID = ? AND password = ?";
+			String SQL = "SELECT GroupID FROM Users WHERE UserID = ? AND password = ?";
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, password);
@@ -55,6 +56,7 @@
 			}
 			else {
 				retStr = username;
+				group = rst.getString("GroupID");
 			}
 
 		}
@@ -74,6 +76,7 @@
 		if(retStr != null)
 		{	session.removeAttribute("loginMessage");
 			session.setAttribute("authenticatedUser", username);
+			session.setAttribute("groupID", group);
 		}
 		else
 			session.setAttribute("loginMessage","Username and password combination is incorrect.");

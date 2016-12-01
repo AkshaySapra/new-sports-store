@@ -15,7 +15,7 @@
 <%@ include file="header.jsp"%>
 	<%			
 			authenticatedUser = (String) session.getAttribute("authenticatedUser");
-			if (authenticatedUser == null || authenticatedUser == "") {
+			if (authenticatedUser == null || authenticatedUser.equals("")) {
 				out.print("You are not logged in properly.");
 				response.sendRedirect("login.jsp");
 			}

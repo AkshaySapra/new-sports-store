@@ -22,7 +22,7 @@ String loginMessage = (String) session.getAttribute("loginMessage");
 
 		if (loginMessage!=null)
 			out.println(loginMessage);
-		if (authenticatedUser == null || authenticatedUser == "")
+		if (authenticatedUser == null || authenticatedUser.equals(""))
 		{
 		out.println("<h2>Enter your user id and password:</h2>");
 
