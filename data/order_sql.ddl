@@ -46,24 +46,24 @@ CREATE TABLE ShippingOption (
 
 CREATE TABLE Users (
 	UserID int IDENTITY,
-	GroupID int,
-	fname varchar(50),
-	lname varchar(50),
-	address varchar(50),
-	city varchar(50),
-	province varchar(3),
-	postalcode char(7),
-	email varchar(254),
-	password varchar(50),
+	GroupID int NOT NULL DEFAULT 2,
+	fname varchar(50) NOT NULL,
+	lname varchar(50) NOT NULL,
+	address varchar(50) NOT NULL,
+	city varchar(50) NOT NULL,
+	province varchar(3) NOT NULL,
+	postalcode char(7) NOT NULL,
+	email varchar(254) UNIQUE,
+	password varchar(50) NOT NULL,
 	PRIMARY KEY (UserID),
 	FOREIGN KEY (GroupID) REFERENCES UserGroup (GroupID)
-		ON DELETE SET NULL ON UPDATE CASCADE
+		ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 
 CREATE TABLE PaymentMethod (
 	creditcardcompany varchar(50),
-	creditnumber int,
+	creditnumber int NOT NULL,
 	PRIMARY KEY (creditnumber)
 );
 
@@ -95,6 +95,7 @@ CREATE TABLE Product (
 CREATE TABLE Orders (
 	oid int IDENTITY,
 	odate datetime,
+	sdate datetime,
 	address varchar(50),
 	city varchar(50),
 	province varchar(3),
@@ -118,7 +119,7 @@ CREATE TABLE ProductReview (
 	UserID int,
 	rnumber int,
 	rating int,
-	description text,
+	description varchar(max),
 	PRIMARY KEY (pid, rnumber),
 	FOREIGN KEY (pid) REFERENCES Product (pid)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -241,7 +242,7 @@ INSERT INTO Stores VALUES ('Warehouse B', 17, 123)
 INSERT INTO Stores VALUES ('Warehouse B', 18, 45)
 
 
-INSERT INTO Orders VALUES ('2015-10-04', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
+INSERT INTO Orders VALUES ('2015-10-04', '2015-10-06', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
 
 
 INSERT INTO OrderedProduct VALUES (1, 1, 2, 55.0)

@@ -83,7 +83,7 @@ try
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
    			pstmt.setInt(1, num);
    			pstmt.setInt(2, TypeID);
-			pstmt.setDate(3, rst.getDate("odate"));
+			pstmt.setString(3, rst.getString("odate"));
 			pstmt.setString(4, rst.getString("address"));
 			pstmt.setString(5, rst.getString("city"));
 			pstmt.setString(6, rst.getString("province"));
