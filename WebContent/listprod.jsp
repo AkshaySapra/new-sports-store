@@ -115,12 +115,14 @@ try
 	
 	ResultSet rst = pstmt.executeQuery();
 	
-	out.print("<font face=\"Century Gothic\" size=\"2\"><table class=\"table\" border=\"1\"><tr><th class=\"col-md-1\"></th><th>Product Name</th>");
+	out.print("<font face=\"Century Gothic\" size=\"2\"><table class=\"table\" border=\"1\"><tr><th class=\"col-md-1\"></th><th class=\"col-md-1\"></th><th>Product Name</th>");
 	out.println("<th>Category</th><th>Price</th></tr>");
 	while (rst.next()) 
 	{
 		out.print("<td class=\"col-md-1\"><a href=\"addcart.jsp?id=" + rst.getInt(1) + "&name=" + rst.getString(2)
 				+ "&price=" + rst.getDouble(3) + "\">Add to Cart</a></td>");
+		out.print("<td class=\"col-md-1\"><a href=\"ProductPage.jsp?id=" + rst.getInt(1) + "&name=" + rst.getString(2)
+		+ "&price=" + rst.getDouble(3) + "\">View Item</a></td>");
 
 		String itemCategory = rst.getString(4);
 		String color = (String) colors.get(itemCategory);
