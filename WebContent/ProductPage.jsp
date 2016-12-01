@@ -37,7 +37,7 @@ try {
 			while (rst.next()) {
 				String URL = rst.getString(1);
 				out.println("<h2 align=\"center\" style=\"color:blue;\">imageurl: " + URL + "</h2>");
-				//out.println("<body background=\""+URL+"\">");
+				out.println("<body background=\""+URL+"\">");
 			}
 			
 			

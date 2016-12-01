@@ -10,7 +10,7 @@
   <body>
  <%@ include file="header.jsp"%>
  <%	
-  String SQL = "SELECT pid, pname, picURL, price, FROM Product WHERE currentlySelling = 1 and catId = ";
+  String SQL = "SELECT pid, pname, picURL, price FROM Product WHERE currentlySelling = 1 and catId = ";
   SQL = SQL + request.getParameter("catid");
   try{
 		 int count = 0;
@@ -29,7 +29,7 @@
 		 
 		out.print("</tr>");
 		}catch(SQLException E){
-		  out.println("Les Exception");
+		  out.println("Exception: " + E);
 		}
  %>
  </body>
