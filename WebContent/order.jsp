@@ -52,7 +52,7 @@ try
         getConnection();
 	                		
         /* String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	 */
-        String sql = "SELECT UserID, fname, lname, password, address, city, province, postalcode, GETDATE() as odate FROM Users WHERE UserID = ?";
+        String sql = "SELECT UserID, fname, lname, password, address, city, province, postalcode, GETDATE() as odate, DATEADD(day,2,GETDATE()) as sdate FROM Users WHERE UserID = ?";
 				      
    		/* con = DriverManager.getConnection(url, uid, pwd); */
    		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -78,7 +78,7 @@ try
 			} */
 			
    			// Enter order information into database
-   			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID, odate, address, city, province, postalcode) VALUES(?, 0, ?, ?, ?, ?, ?, ?);";
+   			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID, odate, address, city, province, postalcode, sdate) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?);";
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
    			pstmt.setInt(1, num);
@@ -88,6 +88,7 @@ try
 			pstmt.setString(5, rst.getString("city"));
 			pstmt.setString(6, rst.getString("province"));
 			pstmt.setString(7, rst.getString("postalcode"));
+			pstmt.setString(8, rst.getString("sdate"));
    			pstmt.executeUpdate();
    			ResultSet keys = pstmt.getGeneratedKeys();
    			keys.next();
@@ -135,9 +136,9 @@ try
    			pstmt.setInt(2, orderId);			
    			pstmt.executeUpdate();						
 
-   			out.println("<h1>Order completed.  Will be shipped soon...</h1>");
+   			out.println("<h1>Order completed.  Will be shipped on this date: " +rst.getString("sdate") + "</h1>");
    			out.println("<h1>Your order reference number is: "+orderId+"</h1>");
-   			out.println("<h1>Shipping to customer: "+authenticatedUser+" Name: "+custName+"</h1>");
+   			out.println("<h1>Shipping to customer id: "+authenticatedUser+", Name: "+custName+"</h1>");
 
    			// Clear session variables (cart)
    			session.setAttribute("productList", null);    
