@@ -22,7 +22,7 @@
 
 String id = request.getParameter("id");
 String name = request.getParameter("name");
-out.println("<h2 align=\"center\" style=\"color:blue;\">Product: " + name + "</h2>");
+out.println("<h1 align=\"center\" style=\"color:blue;\">Product: " + name + "</h1>");
 
 @SuppressWarnings({"unchecked"})
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
@@ -37,11 +37,29 @@ try {
 			while (rst.next()) {
 				String URL = rst.getString(1);
 				out.println("<h2 align=\"center\" style=\"color:blue;\">imageurl: " + URL + "</h2>");
-				out.println("<body background=\""+URL+"\">");
+				out.println("<body background=\""+URL+"\" opacity: 0.3;>");
 			}
 			
 			
+			//String SQL20 = "INSERT INTO ProductReview Values (10,2,3,4,'hahah')";
+			//PreparedStatement pstmt20 = con.prepareStatement(SQL20);			
+			//pstmt20.executeUpdate();
 
+
+			out.println("<h2 align=\"center\" style=\"color:blue;\">Reviews for: " + name + "</h2>");
+			String SQL3 = "SELECT * FROM ProductReview WHERE pid = ?";
+			PreparedStatement pstmt2 = con.prepareStatement(SQL3);
+			pstmt2.setString(1, id);
+			ResultSet rst2 = pstmt2.executeQuery();
+			
+			
+			out.print("<font face=\"Century Gothic\" size=\"2\"><table class=\"table\" border=\"1\"><tr><th>Product Name</th><th>User ID</th><th>Rating</th>");
+			out.println("<th>Review</th></tr>");
+			while (rst2.next()) {
+				out.print("<tr><td>nothing</td><td>nothing yet</td><td>nope</td><td>haha no[]</td></tr>");
+
+				
+			}
 
 
 			
