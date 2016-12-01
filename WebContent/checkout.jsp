@@ -46,9 +46,10 @@
 		%>
 
 	<form method="post" action="order.jsp">
-
+	<table>
+	<th>Shipping Method</th><th>Discount</th>
 		<%
-			String sql = "SELECT TypeName, TypeID FROM ShippingOption;";
+			String sql = "SELECT TypeName, TypeID, discount FROM ShippingOption;";
 			/* 		out.print("<form action=\"post\" action=\"order.jsp\">"); */
 			StringBuilder shipOptionBuilder = new StringBuilder("");
 			try {
@@ -56,10 +57,11 @@
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rst = pstmt.executeQuery();
 				while (rst.next()) {
-					out.println("<input type=\"radio\" name=\"TypeID\" value=\"" + rst.getString("TypeID") + "\">"
-							+ rst.getString("TypeName") + "<br>");
+					out.println("<tr><td><input type=\"radio\" name=\"TypeID\" value=\"" + rst.getString("TypeID") + "\">"
+							+ rst.getString("TypeName") + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td>%" + rst.getString("discount") + "</td></tr>");
 				}
-				out.println("<br>");
+				out.println("</table");
+				out.println("<br><br>");
 				out.println("<input type=\"submit\" value=\"Submit\">");
 				/* 		out.print("</form>"); */
 
