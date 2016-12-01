@@ -65,6 +65,7 @@ colors.put("Hockey", "#FF9900");
 String name = request.getParameter("productName");
 String category = request.getParameter("categoryName");
 
+
 boolean hasNameParam = name != null && !name.equals("");
 boolean hasCategoryParam = category != null && !category.equals("") && !category.equals("All");
 String filter = "", sql = "";
@@ -73,23 +74,23 @@ if (hasNameParam && hasCategoryParam)
 {
 	filter = "<h3>Products containing '"+name+"' in category: '"+category+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ?";
 }
 else if (hasNameParam)
 {
 	filter = "<h3>Products containing '"+name+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ?";
 }
 else if (hasCategoryParam)
 {
 	filter = "<h3>Products in category: '"+category+"'</h3>";
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND PC.catName = ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND PC.catName = ?";
 }
 else
 {
 	filter = "<h3>All Products</h3>";
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName FROM Product P, ProductCategory PC WHERE P.catID = PC.catID";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID";
 }
 
 out.println(filter);
@@ -125,6 +126,7 @@ try
 		+ "&price=" + rst.getDouble(3) + "\">View Item</a></td>");
 
 		String itemCategory = rst.getString(4);
+		String URL = rst.getString(5);
 		String color = (String) colors.get(itemCategory);
 		if (color == null)
 			color = "#FFFFFF";
