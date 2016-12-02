@@ -23,27 +23,19 @@
   <option>All</option>
 
 <%
-/*
-// Could create category list dynamically - more adaptable, but a little more costly
 try               
 {
 	getConnection();
- 	ResultSet rst = executeQuery("SELECT DISTINCT categoryName FROM Product");
+	PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT catName FROM ProductCategory");
+ 	ResultSet rst = pstmt.executeQuery();
         while (rst.next()) 
 		out.println("<option>"+rst.getString(1)+"</option>");
 }
 catch (SQLException ex)
 {       out.println(ex);
 }
-*/
-%>
 
-  <option>Soccer</option>
-  <option>Rugby</option>
-  <option>Basketball</option>
-  <option>Curling</option>
-  <option>Baseball</option>
-  <option>Hockey</option>
+%>
 
   <input type="text" name="productName" size="50">    
   </select><input type="submit" value="Submit"><input type="reset" value="Reset"></p>
@@ -54,7 +46,7 @@ catch (SQLException ex)
 HashMap colors = new HashMap();		// This may be done dynamically as well, a little tricky...
 colors.put("Soccer", "#0000FF");
 colors.put("Rugby", "#FF0000");
-colors.put("Basketball", "#000000");
+colors.put("Basketball", "#008000");
 colors.put("Curling", "#6600CC");
 colors.put("Baseball", "#55A5B3");
 colors.put("Hockey", "#FF9900");
@@ -80,7 +72,7 @@ else if (hasNameParam)
 {
 	filter = "<h3>Products containing '"+name+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? OR IS NULL";
 }
 else if (hasCategoryParam)
 {
@@ -90,7 +82,7 @@ else if (hasCategoryParam)
 else
 {
 	filter = "<h3>All Products</h3>";
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P, ProductCategory PC WHERE P.catID = PC.catID";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P, ProductCategory PC WHERE P.catID = PC.catID OR P.catID IS NULL";
 }
 
 out.println(filter);
@@ -113,10 +105,10 @@ try
 	}
 	
 	ResultSet rst = pstmt.executeQuery();
+	out.println("<h2><a href=\"newProduct.jsp\">Add a new product</a></h2>");	
 	
 	out.print("<font face=\"Century Gothic\" size=\"2\"><table border=\"1\"><tr><th></th><th>Product ID&nbsp;&nbsp;&nbsp;</th><th>Product Name</th>");
 	out.println("<th>Category</th><th>Price</th><th>Currently Selling&nbsp;&nbsp;&nbsp;</th><th>Warehouse A&nbsp;&nbsp;&nbsp;</th><th>Warehouse B&nbsp;&nbsp;&nbsp;</th></tr>");
-	
 	while (rst.next()) 
 	{
 		out.println("<form method=\"get\" action=\"changeProduct.jsp\"><td><input type=\"submit\" value=\"Submit\">&nbsp;<input type=\"reset\" value=\"Reset\">&nbsp;</td>");
@@ -126,7 +118,7 @@ try
 		String URL = rst.getString(5);
 		String color = (String) colors.get(itemCategory);
 		if (color == null)
-			color = "#FFFFFF";
+			color = "#000000";
 		
 		out.println("<td>" + rst.getInt("pid") + "</td><td><INPUT TYPE=\"text\" name=\"pname\" size=\"50\" value=\""
 				+rst.getString("pname")+"\" Style='color=" + color + "'></td>"

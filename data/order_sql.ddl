@@ -87,7 +87,7 @@ CREATE TABLE Product (
 	price decimal(9,2),
 	catID int,
 	picURL varchar(50),
-	currentlySelling bit,
+	currentlySelling bit DEFAULT 0,
 	PRIMARY KEY (pid), 
 	FOREIGN KEY (catID) REFERENCES ProductCategory (catID)
 		ON DELETE CASCADE ON UPDATE CASCADE
