@@ -30,6 +30,14 @@ else {
 	
 	catch (SQLException ex) {
 		out.println(ex);
+		out.println(" <br>... </br>");
+		out.println(" <br>... </br>");
+		out.println(" <br>wait a second. that means </br>");
+		out.println(" <br>... </br>");
+
+		out.println(" <br>YOU HAVE ALREADY INSERTED A REVIEW FOR THIS PRODUCT </br>");
+		out.println(" <br>nice try tho </br>");
+
 	}
 }
 %>
