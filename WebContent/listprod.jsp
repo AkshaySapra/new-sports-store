@@ -23,27 +23,19 @@
   <option>All</option>
 
 <%
-/*
-// Could create category list dynamically - more adaptable, but a little more costly
 try               
 {
 	getConnection();
- 	ResultSet rst = executeQuery("SELECT DISTINCT categoryName FROM Product");
+	PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT catName FROM ProductCategory");
+ 	ResultSet rst = pstmt.executeQuery();
         while (rst.next()) 
 		out.println("<option>"+rst.getString(1)+"</option>");
 }
 catch (SQLException ex)
 {       out.println(ex);
 }
-*/
-%>
 
-  <option>Soccer</option>
-  <option>Rugby</option>
-  <option>Basketball</option>
-  <option>Curling</option>
-  <option>Baseball</option>
-  <option>Hockey</option>
+%>
 
   <input type="text" name="productName" size="50">    
   </select><input type="submit" value="Submit"><input type="reset" value="Reset"></p>
@@ -54,7 +46,7 @@ catch (SQLException ex)
 HashMap colors = new HashMap();		// This may be done dynamically as well, a little tricky...
 colors.put("Soccer", "#0000FF");
 colors.put("Rugby", "#FF0000");
-colors.put("Basketball", "#000000");
+colors.put("Basketball", "#008000");
 colors.put("Curling", "#6600CC");
 colors.put("Baseball", "#55A5B3");
 colors.put("Hockey", "#FF9900");
@@ -129,7 +121,7 @@ try
 		String URL = rst.getString(5);
 		String color = (String) colors.get(itemCategory);
 		if (color == null)
-			color = "#FFFFFF";
+			color = "#000000";
 
 		out.println("<td><font color=\"" + color + "\">" + rst.getString(2) + "</font></td>"
 				+ "<td><font color=\"" + color + "\">" + itemCategory + "</font></td>"

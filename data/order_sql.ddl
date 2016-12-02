@@ -1,3 +1,5 @@
+DROP VIEW Report;
+DROP TRIGGER newProductTrig;
 DROP TABLE OrderedProduct;
 DROP TABLE Stores;
 DROP TABLE Orders;
@@ -85,7 +87,7 @@ CREATE TABLE Product (
 	price decimal(9,2),
 	catID int,
 	picURL varchar(50),
-	currentlySelling bit,
+	currentlySelling bit DEFAULT 0,
 	PRIMARY KEY (pid), 
 	FOREIGN KEY (catID) REFERENCES ProductCategory (catID)
 		ON DELETE CASCADE ON UPDATE CASCADE
@@ -151,120 +153,131 @@ CREATE TABLE OrderedProduct (
 		ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-INSERT INTO ProductCategory VALUES ('Soccer', 'images/Mike Soccer.png')
-INSERT INTO ProductCategory VALUES ('Rugby', 'images/Mike Rugby.png')
-INSERT INTO ProductCategory VALUES ('Basketball', 'images/Mike Basketball.png')
-INSERT INTO ProductCategory VALUES ('Curling', 'images/Mike Curling.png')
-INSERT INTO ProductCategory VALUES ('Baseball', 'images/Mike Baseball.png')
-INSERT INTO ProductCategory VALUES ('Hockey', 'images/Mike Hockey.png')
+INSERT INTO ProductCategory VALUES ('Soccer', 'images/Mike Soccer.png');
+INSERT INTO ProductCategory VALUES ('Rugby', 'images/Mike Rugby.png');
+INSERT INTO ProductCategory VALUES ('Basketball', 'images/Mike Basketball.png');
+INSERT INTO ProductCategory VALUES ('Curling', 'images/Mike Curling.png');
+INSERT INTO ProductCategory VALUES ('Baseball', 'images/Mike Baseball.png');
+INSERT INTO ProductCategory VALUES ('Hockey', 'images/Mike Hockey.png');
 
 
-INSERT INTO Product VALUES ('Soccer Ball', 10, 1, 'images/soccer ball1.png', 1)
-INSERT INTO Product VALUES ('Soccer Cleats', 10, 1, 'images/soccer cleats.jpg', 1)
-INSERT INTO Product VALUES ('Soccer Shin Guards', 10, 1, 'images/soccer shin pads.jpg', 1)
-INSERT INTO Product VALUES ('Rugby Ball', 10, 2, 'images/rugby ball.jpg', 1)
-INSERT INTO Product VALUES ('Rugby Body Armor', 10, 2, 'images/rugby body armor.jpg', 1)
-INSERT INTO Product VALUES ('Rugby Helmet', 10, 2, 'images/rugby helmet.jpg', 1)
-INSERT INTO Product VALUES ('Basketball', 10, 3, 'images/basketball.jpe', 1)
-INSERT INTO Product VALUES ('Basketball Shoes', 10, 3, 'images/basketball shoes.JPG', 1)
-INSERT INTO Product VALUES ('Basketball Hoop', 10, 3, 'images/basketball hoop.jpe', 1)
-INSERT INTO Product VALUES ('Curling Rock', 10, 4, 'images/curling rock.jpe', 1)
-INSERT INTO Product VALUES ('Curling Shoes', 10, 4, 'images/curlingshoes.jpg', 1)
-INSERT INTO Product VALUES ('Curling Broom', 10, 4, 'images/curling broom.jpg', 1)
-INSERT INTO Product VALUES ('Baseball', 10, 5, 'images/baseball.jpg', 1)
-INSERT INTO Product VALUES ('Baseball Glove', 10, 5, 'images/baseball glove.jpg', 1)
-INSERT INTO Product VALUES ('Baseball Bat', 10, 5, 'images/baseball bat.png', 1)
-INSERT INTO Product VALUES ('Hockey Puck', 10, 6, 'images/hockey puck.jpg', 1)
-INSERT INTO Product VALUES ('Hockey Stick', 10, 6, 'images/hockey stick.jpg', 1)
-INSERT INTO Product VALUES ('Hockey Skates', 10, 6, 'images/hockey skates.jpg', 1) 
+INSERT INTO Product VALUES ('Soccer Ball', 10, 1, 'images/soccer ball1.png', 1);
+INSERT INTO Product VALUES ('Soccer Cleats', 10, 1, 'images/soccer cleats.jpg', 1);
+INSERT INTO Product VALUES ('Soccer Shin Guards', 10, 1, 'images/soccer shin pads.jpg', 1);
+INSERT INTO Product VALUES ('Rugby Ball', 10, 2, 'images/rugby ball.jpg', 1);
+INSERT INTO Product VALUES ('Rugby Body Armor', 10, 2, 'images/rugby body armor.jpg', 1);
+INSERT INTO Product VALUES ('Rugby Helmet', 10, 2, 'images/rugby helmet.jpg', 1);
+INSERT INTO Product VALUES ('Basketball', 10, 3, 'images/basketball.jpe', 1);
+INSERT INTO Product VALUES ('Basketball Shoes', 10, 3, 'images/basketball shoes.JPG', 1);
+INSERT INTO Product VALUES ('Basketball Hoop', 10, 3, 'images/basketball hoop.jpe', 1);
+INSERT INTO Product VALUES ('Curling Rock', 10, 4, 'images/curling rock.jpe', 1);
+INSERT INTO Product VALUES ('Curling Shoes', 10, 4, 'images/curlingshoes.jpg', 1);
+INSERT INTO Product VALUES ('Curling Broom', 10, 4, 'images/curling broom.jpg', 1);
+INSERT INTO Product VALUES ('Baseball', 10, 5, 'images/baseball.jpg', 1);
+INSERT INTO Product VALUES ('Baseball Glove', 10, 5, 'images/baseball glove.jpg', 1);
+INSERT INTO Product VALUES ('Baseball Bat', 10, 5, 'images/baseball bat.png', 1);
+INSERT INTO Product VALUES ('Hockey Puck', 10, 6, 'images/hockey puck.jpg', 1);
+INSERT INTO Product VALUES ('Hockey Stick', 10, 6, 'images/hockey stick.jpg', 1);
+INSERT INTO Product VALUES ('Hockey Skates', 10, 6, 'images/hockey skates.jpg', 1);
 
 
-INSERT INTO UserGroup VALUES (1, 'Manager')
-INSERT INTO UserGroup VALUES (2, 'Customer')
+INSERT INTO UserGroup VALUES (1, 'Manager');
+INSERT INTO UserGroup VALUES (2, 'Customer');
 
 
-INSERT INTO Warehouse VALUES ('Warehouse A', ' 1234 SomePlaceInTown Street', 'Kelowna', 'BC')
-INSERT INTO Warehouse VALUES ('Warehouse B', ' 4321 SomePlaceInPEI Street', 'Charlottetown', 'PEI')
+INSERT INTO Warehouse VALUES ('Warehouse A', ' 1234 SomePlaceInTown Street', 'Kelowna', 'BC');
+INSERT INTO Warehouse VALUES ('Warehouse B', ' 4321 SomePlaceInPEI Street', 'Charlottetown', 'PEI');
 
 
-INSERT INTO ShippingOption VALUES (1, 'Moose', 0)
-INSERT INTO ShippingOption VALUES (2, 'Goose', 25)
-INSERT INTO ShippingOption VALUES (3, 'Canoe/Portage', 50)
+INSERT INTO ShippingOption VALUES (1, 'Moose', 0);
+INSERT INTO ShippingOption VALUES (2, 'Goose', 25);
+INSERT INTO ShippingOption VALUES (3, 'Canoe/Portage', 50);
 
 
-INSERT INTO Users VALUES (1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'a')
-INSERT INTO Users VALUES (2, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'b')
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirls@google.ca', 'p')
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsS@google.ca', 'p')
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlSS@google.ca', 'p')
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSS@google.ca', 'p')
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSS@google.ca', 'p')
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSS@google.ca', 'p')
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSSS@google.ca', 'p')
+INSERT INTO Users VALUES (1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'a');
+INSERT INTO Users VALUES (2, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'b');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirls@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsS@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlSS@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSS@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSS@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSS@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSSS@google.ca', 'p');
 
 
-INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890)
+INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890);
 
 
-INSERT INTO HasPaymentMethod VALUES (1, 1234567890)
+INSERT INTO HasPaymentMethod VALUES (1, 1234567890);
+
+INSERT INTO Stores VALUES ('Warehouse A', 1, 67);
+INSERT INTO Stores VALUES ('Warehouse A', 2, 123);
+INSERT INTO Stores VALUES ('Warehouse A', 3, 45);
+INSERT INTO Stores VALUES ('Warehouse A', 4, 345);
+INSERT INTO Stores VALUES ('Warehouse A', 5, 567);
+INSERT INTO Stores VALUES ('Warehouse A', 6, 32);
+INSERT INTO Stores VALUES ('Warehouse A', 7, 67);
+INSERT INTO Stores VALUES ('Warehouse A', 8, 123);
+INSERT INTO Stores VALUES ('Warehouse A', 9, 45);
+INSERT INTO Stores VALUES ('Warehouse A', 10, 67);
+INSERT INTO Stores VALUES ('Warehouse A', 11, 123);
+INSERT INTO Stores VALUES ('Warehouse A', 12, 45);
+INSERT INTO Stores VALUES ('Warehouse A', 13, 345);
+INSERT INTO Stores VALUES ('Warehouse A', 14, 567);
+INSERT INTO Stores VALUES ('Warehouse A', 15, 32);
+INSERT INTO Stores VALUES ('Warehouse A', 16, 67);
+INSERT INTO Stores VALUES ('Warehouse A', 17, 123);
+INSERT INTO Stores VALUES ('Warehouse A', 18, 45);
+INSERT INTO Stores VALUES ('Warehouse B', 1, 67);
+INSERT INTO Stores VALUES ('Warehouse B', 2, 123);
+INSERT INTO Stores VALUES ('Warehouse B', 3, 45);
+INSERT INTO Stores VALUES ('Warehouse B', 4, 345);
+INSERT INTO Stores VALUES ('Warehouse B', 5, 567);
+INSERT INTO Stores VALUES ('Warehouse B', 6, 32);
+INSERT INTO Stores VALUES ('Warehouse B', 7, 67);
+INSERT INTO Stores VALUES ('Warehouse B', 8, 123);
+INSERT INTO Stores VALUES ('Warehouse B', 9, 45);
+INSERT INTO Stores VALUES ('Warehouse B', 10, 67);
+INSERT INTO Stores VALUES ('Warehouse B', 11, 123);
+INSERT INTO Stores VALUES ('Warehouse B', 12, 45);
+INSERT INTO Stores VALUES ('Warehouse B', 13, 345);
+INSERT INTO Stores VALUES ('Warehouse B', 14, 567);
+INSERT INTO Stores VALUES ('Warehouse B', 15, 32);
+INSERT INTO Stores VALUES ('Warehouse B', 16, 67);
+INSERT INTO Stores VALUES ('Warehouse B', 17, 123);
+INSERT INTO Stores VALUES ('Warehouse B', 18, 45);
 
 
-INSERT INTO Stores VALUES ('Warehouse A', 1, 67)
-INSERT INTO Stores VALUES ('Warehouse A', 2, 123)
-INSERT INTO Stores VALUES ('Warehouse A', 3, 45)
-INSERT INTO Stores VALUES ('Warehouse A', 4, 345)
-INSERT INTO Stores VALUES ('Warehouse A', 5, 567)
-INSERT INTO Stores VALUES ('Warehouse A', 6, 32)
-INSERT INTO Stores VALUES ('Warehouse A', 7, 67)
-INSERT INTO Stores VALUES ('Warehouse A', 8, 123)
-INSERT INTO Stores VALUES ('Warehouse A', 9, 45)
-INSERT INTO Stores VALUES ('Warehouse A', 10, 67)
-INSERT INTO Stores VALUES ('Warehouse A', 11, 123)
-INSERT INTO Stores VALUES ('Warehouse A', 12, 45)
-INSERT INTO Stores VALUES ('Warehouse A', 13, 345)
-INSERT INTO Stores VALUES ('Warehouse A', 14, 567)
-INSERT INTO Stores VALUES ('Warehouse A', 15, 32)
-INSERT INTO Stores VALUES ('Warehouse A', 16, 67)
-INSERT INTO Stores VALUES ('Warehouse A', 17, 123)
-INSERT INTO Stores VALUES ('Warehouse A', 18, 45)
-INSERT INTO Stores VALUES ('Warehouse B', 1, 67)
-INSERT INTO Stores VALUES ('Warehouse B', 2, 123)
-INSERT INTO Stores VALUES ('Warehouse B', 3, 45)
-INSERT INTO Stores VALUES ('Warehouse B', 4, 345)
-INSERT INTO Stores VALUES ('Warehouse B', 5, 567)
-INSERT INTO Stores VALUES ('Warehouse B', 6, 32)
-INSERT INTO Stores VALUES ('Warehouse B', 7, 67)
-INSERT INTO Stores VALUES ('Warehouse B', 8, 123)
-INSERT INTO Stores VALUES ('Warehouse B', 9, 45)
-INSERT INTO Stores VALUES ('Warehouse B', 10, 67)
-INSERT INTO Stores VALUES ('Warehouse B', 11, 123)
-INSERT INTO Stores VALUES ('Warehouse B', 12, 45)
-INSERT INTO Stores VALUES ('Warehouse B', 13, 345)
-INSERT INTO Stores VALUES ('Warehouse B', 14, 567)
-INSERT INTO Stores VALUES ('Warehouse B', 15, 32)
-INSERT INTO Stores VALUES ('Warehouse B', 16, 67)
-INSERT INTO Stores VALUES ('Warehouse B', 17, 123)
-INSERT INTO Stores VALUES ('Warehouse B', 18, 45)
+INSERT INTO Orders VALUES ('2015-10-04', '2015-10-06', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30);
 
 
-INSERT INTO Orders VALUES ('2015-10-04', '2015-10-06', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30)
+INSERT INTO OrderedProduct VALUES (1, 1, 2, 55.0);
+INSERT INTO OrderedProduct VALUES (1, 2, 1, 33.0);
+
+INSERT INTO ProductReview VALUES (9,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (8,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (7,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (6,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (5,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (4,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (3,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (2,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (1,1,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (1,4,5,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (1,2,4,'hahahKai SUcks');
 
 
-INSERT INTO OrderedProduct VALUES (1, 1, 2, 55.0)
-INSERT INTO OrderedProduct VALUES (1, 2, 1, 33.0)
+CREATE VIEW Report
+AS
+SELECT O.oid, odate, sdate, O.UserID, fname, lname, O.province, TotalAmount, pid, quantity, price
+FROM Orders O, OrderedProduct OP, Users U
+WHERE O.oid = OP.oid AND U.UserID = O.UserID;
 
-INSERT INTO ProductReview VALUES (9,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (8,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (7,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (6,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (5,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (4,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (3,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (2,2,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (1,1,4,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (1,4,5,'hahahKai SUcks')
-INSERT INTO ProductReview VALUES (1,2,4,'hahahKai SUcks')
-
-
-
+CREATE TRIGGER newProductTrig
+ON Product
+FOR INSERT
+AS
+INSERT INTO Stores (wname, pid, inventory) SELECT 'Warehouse A', pid, 0 FROM inserted
+INSERT INTO Stores (wname, pid, inventory) SELECT 'Warehouse B', pid, 0 FROM inserted
+GO;
 
