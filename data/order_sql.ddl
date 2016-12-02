@@ -268,9 +268,9 @@ INSERT INTO ProductReview VALUES (1,2,4,'hahahKai SUcks');
 
 CREATE VIEW Report
 AS
-SELECT O.oid, odate, sdate, O.UserID, fname, lname, O.province, TotalAmount, pid, quantity, price
-FROM Orders O, OrderedProduct OP, Users U
-WHERE O.oid = OP.oid AND U.UserID = O.UserID;
+SELECT O.oid, odate, sdate, O.UserID, fname, lname, O.province, TotalAmount, AfterDiscount, P.pid, pname, quantity, OP.price
+FROM Orders O, OrderedProduct OP, Users U, Product P
+WHERE O.oid = OP.oid AND U.UserID = O.UserID AND P.pid = OP.pid;
 
 CREATE TRIGGER newProductTrig
 ON Product
