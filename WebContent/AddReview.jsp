@@ -17,13 +17,13 @@
 
 <%@ include file="header.jsp"%>
 <h1>Enter your review:</h1>
-<form method="post" action="ReviewAdd.jsp">
+<form method="post" action="insertReview.jsp">
 <%
 String id = request.getParameter("id");
 out.println("<input type=\"hidden\" name=\"pid\" value=\"" + id + "\"");
 %>
 <h2>Rating (1-5):</h2>
-<input type="number" name="Rating" min="1" max="5">
+<input type="number" name="rating" min="1" max="5">
 <br>
 <h2>Review:</h2>
 <input type="text" name="Review" size="50">

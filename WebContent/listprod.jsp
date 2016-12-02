@@ -114,8 +114,7 @@ try
 	{
 		out.print("<td class=\"col-md-1\"><a href=\"addcart.jsp?id=" + rst.getInt(1) + "&name=" + rst.getString(2)
 				+ "&price=" + rst.getDouble(3) + "\">Add to Cart</a></td>");
-		out.print("<td class=\"col-md-1\"><a href=\"ProductPage.jsp?id=" + rst.getInt(1) + "&name=" + rst.getString(2)
-		+ "&price=" + rst.getDouble(3) + "\">View Item</a></td>");
+		out.print("<td class=\"col-md-1\"><a href=\"ProductPage.jsp?id=" + rst.getInt(1) + "\">View Item</a></td>");
 
 		String itemCategory = rst.getString(4);
 		String URL = rst.getString(5);

@@ -48,27 +48,24 @@
 
 
 String id = request.getParameter("id");
-session.setAttribute("productid", id);
-
-String name = request.getParameter("name");
-out.println("<h1 align=\"center\" style=\"color:#3399FF;\">Product: " + name + "</h1>");
 
 @SuppressWarnings({"unchecked"})
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 try {	
 			getConnection();
 		
-			String SQL2 = "SELECT  picURL FROM Product WHERE pid = ?";
+			String SQL2 = "SELECT picURL, pname FROM Product WHERE pid = ?";
 			PreparedStatement pstmt = con.prepareStatement(SQL2);
 			pstmt.setString(1, id);
 			ResultSet rst = pstmt.executeQuery();
 
-			while (rst.next()) {
-				String URL = rst.getString(1);
-				//out.println("<h2 align=\"center\" style=\"color:blue;\">imageurl: " + URL + "</h2>");
-				//out.println("<body background=\""+URL+"\" opacity: 5.9;>");
-				out.println("<center><img src=\" "+ URL +" \" alt=\"what image shows\" height=\"400\" width=\"500\"></center>");
-			}
+			rst.next();
+			String name = rst.getString("pname");
+			out.println("<h1 align=\"center\" style=\"color:#3399FF;\">Product: " + name + "</h1>");
+			String URL = rst.getString("picURL");
+			//out.println("<h2 align=\"center\" style=\"color:blue;\">imageurl: " + URL + "</h2>");
+			//out.println("<body background=\""+URL+"\" opacity: 5.9;>");
+			out.println("<center><img src=\" "+ URL +" \" alt=\"what image shows\" height=\"400\" width=\"500\"></center>");
 			
 			//nn
 
