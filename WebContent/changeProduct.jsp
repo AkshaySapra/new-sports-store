@@ -14,7 +14,16 @@ if (pid == null || pid.equals("") || pname == null || pname.equals("") || catNam
 	response.sendRedirect("productManage.jsp");
 
 try {
-	num = Integer.parseInt(pid);
+	int pidnum = Integer.parseInt(pid);
+	int Ainv = Integer.parseInt(Ainventory);
+	int Binv = Integer.parseInt(Binventory);
+	int sell;
+	if (currentlySelling.equals("true"))
+		sell = 1;
+	else if (currentlySelling.equals("false"))
+		sell = 0;
+	else throw new Exception();
+	
 	
 	
 }
