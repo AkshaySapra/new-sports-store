@@ -20,7 +20,7 @@
 <form method="post" action="insertReview.jsp">
 <%
 String id = request.getParameter("id");
-out.println("<input type=\"hidden\" name=\"pid\" value=\"" + id + "\"");
+out.println("<input type=\"hidden\" name=\"pid\" value=\"" + id + "\">");
 %>
 <h2>Rating (1-5):</h2>
 <input type="number" name="rating" min="1" max="5">
