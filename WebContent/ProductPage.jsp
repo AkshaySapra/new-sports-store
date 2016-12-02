@@ -48,6 +48,8 @@
 
 
 String id = request.getParameter("id");
+session.setAttribute("productid", id);
+
 String name = request.getParameter("name");
 out.println("<h1 align=\"center\" style=\"color:#3399FF;\">Product: " + name + "</h1>");
 
@@ -100,6 +102,7 @@ try {
 				
 			}
 
+			out.println("<H2><A HREF=\"AddReview.jsp?id=" + id + "\">Leave a review for this product</A></H2>");
 
 			
 			//out.println("<img src=\"images/basketball shoes.JPG\" alt=\"Mountain View\" style=\"width:304px;height:228px;\">");
