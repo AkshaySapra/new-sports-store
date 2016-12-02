@@ -19,6 +19,8 @@
 				if (authenticatedUser == null || authenticatedUser.equals("")) {
 					out.print("<li><a href=\"login.jsp\">Log In</a></li>");
 				} else {
+					if (groupID != null)
+						out.print("<li><a href=\"profile.jsp\">Profile</a></li>");
 					if (groupID != null && groupID.equals("1"))
 						out.print("<li><a href=\"manage.jsp\">Manage</a></li>");
 					out.print("<li><a href=\"destroySession.jsp\">Log Out</a></li>");
