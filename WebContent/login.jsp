@@ -62,7 +62,8 @@ String loginMessage = (String) session.getAttribute("loginMessage");
 			ResultSet rst = pstmt.executeQuery();
 			if (rst.next()) {
 				out.println("You are currently logged in as " + rst.getString("fname") + " " + rst.getString("lname"));
-			}
+			}else
+				out.println("Login Failed");
 		}
 		
 %>
