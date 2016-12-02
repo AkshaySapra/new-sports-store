@@ -65,14 +65,14 @@ CREATE TABLE Users (
 
 CREATE TABLE PaymentMethod (
 	creditcardcompany varchar(50),
-	creditnumber int NOT NULL,
+	creditnumber bigint,
 	PRIMARY KEY (creditnumber)
 );
 
 
 CREATE TABLE HasPaymentMethod (
 	UserID int,
-	creditnumber int,
+	creditnumber bigint,
 	PRIMARY KEY (UserID, creditnumber),
 	FOREIGN KEY (UserID) REFERENCES Users (UserID)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -103,7 +103,7 @@ CREATE TABLE Orders (
 	province varchar(3),
 	postalcode char(7),
 	TypeID int,
-	creditnumber int,
+	creditnumber bigint,
 	UserID int,
 	TotalAmount decimal(12,2),
 	AfterDiscount decimal(12,2),
@@ -202,9 +202,10 @@ INSERT INTO Users VALUES (1, 'Kai', 'Neubauer', '1234 My Street', 'Some Place', 
 
 
 INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890);
-
+INSERT INTO PaymentMethod VALUES ('Visa', 5648820384);
 
 INSERT INTO HasPaymentMethod VALUES (1, 1234567890);
+INSERT INTO HasPaymentMethod VALUES (4, 5648820384);
 
 INSERT INTO Stores VALUES ('Warehouse A', 1, 67);
 INSERT INTO Stores VALUES ('Warehouse A', 2, 123);

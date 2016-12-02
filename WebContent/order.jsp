@@ -1,3 +1,4 @@
+<%@page import="java.math.BigInteger"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.HashMap" %>
@@ -21,7 +22,7 @@
 // Get customer id
 /* String custId = request.getParameter("customerId"); */
 int TypeID = Integer.parseInt(request.getParameter("TypeID"));  
-int creditnumber = Integer.parseInt(request.getParameter("creditnumber"));
+long creditnumber = Long.parseLong(request.getParameter("creditnumber"));
 
 // Get password
 String password = request.getParameter("password");
@@ -79,7 +80,7 @@ try
 			} */
 			
    			// Enter order information into database
-   			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID, odate, address, city, province, postalcode, sdate, creditnumber) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?, ?);";
+   			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID, odate, address, city, province, postalcode, sdate, creditnumber, AfterDiscount) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?, ?, 0);";
    			// Retrieve auto-generated key for orderId
    			pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
    			pstmt.setInt(1, num);
@@ -90,7 +91,7 @@ try
 			pstmt.setString(6, rst.getString("province"));
 			pstmt.setString(7, rst.getString("postalcode"));
 			pstmt.setString(8, rst.getString("sdate"));
-			pstmt.setInt(9, creditnumber);
+			pstmt.setLong(9, creditnumber);
    			pstmt.executeUpdate();
    			ResultSet keys = pstmt.getGeneratedKeys();
    			keys.next();
@@ -132,10 +133,16 @@ try
            	out.println("</table>");
 
    			// Update order total
-   			sql = "UPDATE Orders SET TotalAmount=? WHERE oid=?";
+   			sql = "UPDATE Orders SET TotalAmount=?, AfterDiscount = ? WHERE oid=?";
+   			PreparedStatement disPstmt = con.prepareStatement("SELECT discount FROM ShippingOption WHERE TypeID = ?");
+   			disPstmt.setInt(1, TypeID);
+   			ResultSet disRst = disPstmt.executeQuery();
+   			disRst.next();
+   			double discount = disRst.getDouble("discount");
    			pstmt = con.prepareStatement(sql);
    			pstmt.setDouble(1, total);
-   			pstmt.setInt(2, orderId);			
+   			pstmt.setDouble(2, total - total*discount/100);
+   			pstmt.setInt(3, orderId);			
    			pstmt.executeUpdate();						
 
    			out.println("<h1>Order completed.  Will be shipped on this date: " +rst.getString("sdate") + "</h1>");
