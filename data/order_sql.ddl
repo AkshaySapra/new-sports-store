@@ -80,7 +80,7 @@ CREATE TABLE HasPaymentMethod (
 
 
 CREATE TABLE Product (
-	pid int,
+	pid int IDENTITY,
 	pname varchar(50),
 	price decimal(9,2),
 	catID int,
@@ -159,24 +159,24 @@ INSERT INTO ProductCategory VALUES ('Baseball', 'images/Mike Baseball.png')
 INSERT INTO ProductCategory VALUES ('Hockey', 'images/Mike Hockey.png')
 
 
-INSERT INTO Product VALUES (1, 'Soccer Ball', 10, 1, 'images/soccer ball1.png', 1)
-INSERT INTO Product VALUES (2, 'Soccer Cleats', 10, 1, 'images/soccer cleats.jpg', 1)
-INSERT INTO Product VALUES (3, 'Soccer Shin Guards', 10, 1, 'images/soccer shin pads.jpg', 1)
-INSERT INTO Product VALUES (4, 'Rugby Ball', 10, 2, 'images/rugby ball.jpg', 1)
-INSERT INTO Product VALUES (5, 'Rugby Body Armor', 10, 2, 'images/rugby body armor.jpg', 1)
-INSERT INTO Product VALUES (6, 'Rugby Helmet', 10, 2, 'images/rugby helmet.jpg', 1)
-INSERT INTO Product VALUES (7, 'Basketball', 10, 3, 'images/basketball.jpe', 1)
-INSERT INTO Product VALUES (8, 'Basketball Shoes', 10, 3, 'images/basketball shoes.JPG', 1)
-INSERT INTO Product VALUES (9, 'Basketball Hoop', 10, 3, 'images/basketball hoop.jpe', 1)
-INSERT INTO Product VALUES (10, 'Curling Rock', 10, 4, 'images/curling rock.jpe', 1)
-INSERT INTO Product VALUES (11, 'Curling Shoes', 10, 4, 'images/curlingshoes.jpg', 1)
-INSERT INTO Product VALUES (12, 'Curling Broom', 10, 4, 'images/curling broom.jpg', 1)
-INSERT INTO Product VALUES (13, 'Baseball', 10, 5, 'images/baseball.jpg', 1)
-INSERT INTO Product VALUES (14, 'Baseball Glove', 10, 5, 'images/baseball glove.jpg', 1)
-INSERT INTO Product VALUES (15, 'Baseball Bat', 10, 5, 'images/baseball bat.png', 1)
-INSERT INTO Product VALUES (16, 'Hockey Puck', 10, 6, 'images/hockey puck.jpg', 1)
-INSERT INTO Product VALUES (17, 'Hockey Stick', 10, 6, 'images/hockey stick.jpg', 1)
-INSERT INTO Product VALUES (18, 'Hockey Skates', 10, 6, 'images/hockey skates.jpg', 1) 
+INSERT INTO Product VALUES ('Soccer Ball', 10, 1, 'images/soccer ball1.png', 1)
+INSERT INTO Product VALUES ('Soccer Cleats', 10, 1, 'images/soccer cleats.jpg', 1)
+INSERT INTO Product VALUES ('Soccer Shin Guards', 10, 1, 'images/soccer shin pads.jpg', 1)
+INSERT INTO Product VALUES ('Rugby Ball', 10, 2, 'images/rugby ball.jpg', 1)
+INSERT INTO Product VALUES ('Rugby Body Armor', 10, 2, 'images/rugby body armor.jpg', 1)
+INSERT INTO Product VALUES ('Rugby Helmet', 10, 2, 'images/rugby helmet.jpg', 1)
+INSERT INTO Product VALUES ('Basketball', 10, 3, 'images/basketball.jpe', 1)
+INSERT INTO Product VALUES ('Basketball Shoes', 10, 3, 'images/basketball shoes.JPG', 1)
+INSERT INTO Product VALUES ('Basketball Hoop', 10, 3, 'images/basketball hoop.jpe', 1)
+INSERT INTO Product VALUES ('Curling Rock', 10, 4, 'images/curling rock.jpe', 1)
+INSERT INTO Product VALUES ('Curling Shoes', 10, 4, 'images/curlingshoes.jpg', 1)
+INSERT INTO Product VALUES ('Curling Broom', 10, 4, 'images/curling broom.jpg', 1)
+INSERT INTO Product VALUES ('Baseball', 10, 5, 'images/baseball.jpg', 1)
+INSERT INTO Product VALUES ('Baseball Glove', 10, 5, 'images/baseball glove.jpg', 1)
+INSERT INTO Product VALUES ('Baseball Bat', 10, 5, 'images/baseball bat.png', 1)
+INSERT INTO Product VALUES ('Hockey Puck', 10, 6, 'images/hockey puck.jpg', 1)
+INSERT INTO Product VALUES ('Hockey Stick', 10, 6, 'images/hockey stick.jpg', 1)
+INSERT INTO Product VALUES ('Hockey Skates', 10, 6, 'images/hockey skates.jpg', 1) 
 
 
 INSERT INTO UserGroup VALUES (1, 'Manager')
