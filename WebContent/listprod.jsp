@@ -66,23 +66,23 @@ if (hasNameParam && hasCategoryParam)
 {
 	filter = "<h3>Products containing '"+name+"' in category: '"+category+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ? AND currentlySelling = 1";
 }
 else if (hasNameParam)
 {
 	filter = "<h3>Products containing '"+name+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND currentlySelling = 1";
 }
 else if (hasCategoryParam)
 {
 	filter = "<h3>Products in category: '"+category+"'</h3>";
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND PC.catName = ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND PC.catName = ? AND currentlySelling = 1";
 }
 else
 {
 	filter = "<h3>All Products</h3>";
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND currentlySelling = 1";
 }
 
 out.println(filter);

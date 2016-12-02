@@ -66,13 +66,13 @@ if (hasNameParam && hasCategoryParam)
 {
 	filter = "<h3>Products containing '"+name+"' in category: '"+category+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? AND PC.catName = ?";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P LEFT OUTER JOIN ProductCategory PC ON P.catID = PC.catID WHERE P.pname LIKE ? AND PC.catName = ?";
 }
 else if (hasNameParam)
 {
 	filter = "<h3>Products containing '"+name+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P, ProductCategory PC WHERE P.catID = PC.catID AND P.pname LIKE ? OR IS NULL";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P LEFT OUTER JOIN ProductCategory PC ON P.catID = PC.catID WHERE P.pname LIKE ? OR IS NULL";
 }
 else if (hasCategoryParam)
 {
@@ -82,7 +82,7 @@ else if (hasCategoryParam)
 else
 {
 	filter = "<h3>All Products</h3>";
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P, ProductCategory PC WHERE P.catID = PC.catID OR P.catID IS NULL";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P LEFT OUTER JOIN ProductCategory PC ON P.catID = PC.catID";
 }
 
 out.println(filter);

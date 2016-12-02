@@ -65,14 +65,14 @@ CREATE TABLE Users (
 
 CREATE TABLE PaymentMethod (
 	creditcardcompany varchar(50),
-	creditnumber int NOT NULL,
+	creditnumber bigint,
 	PRIMARY KEY (creditnumber)
 );
 
 
 CREATE TABLE HasPaymentMethod (
 	UserID int,
-	creditnumber int,
+	creditnumber bigint,
 	PRIMARY KEY (UserID, creditnumber),
 	FOREIGN KEY (UserID) REFERENCES Users (UserID)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -103,9 +103,10 @@ CREATE TABLE Orders (
 	province varchar(3),
 	postalcode char(7),
 	TypeID int,
-	creditnumber int,
+	creditnumber bigint,
 	UserID int,
-	TotalAmount decimal(9,2),
+	TotalAmount decimal(12,2),
+	AfterDiscount decimal(12,2),
 	PRIMARY KEY (oid),
 	FOREIGN KEY (TypeID) REFERENCES ShippingOption (TypeID)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -197,18 +198,14 @@ INSERT INTO ShippingOption VALUES (3, 'Canoe/Portage', 50);
 INSERT INTO Users VALUES (1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'a');
 INSERT INTO Users VALUES (2, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'b');
 INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirls@google.ca', 'p');
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsS@google.ca', 'p');
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlSS@google.ca', 'p');
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSS@google.ca', 'p');
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSS@google.ca', 'p');
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSS@google.ca', 'p');
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSSS@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Kai', 'Neubauer', '1234 My Street', 'Some Place', 'BC', 'V1V 1V7', 'kai@neubauer.ca', 'password');
 
 
 INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890);
-
+INSERT INTO PaymentMethod VALUES ('Visa', 5648820384);
 
 INSERT INTO HasPaymentMethod VALUES (1, 1234567890);
+INSERT INTO HasPaymentMethod VALUES (4, 5648820384);
 
 INSERT INTO Stores VALUES ('Warehouse A', 1, 67);
 INSERT INTO Stores VALUES ('Warehouse A', 2, 123);
@@ -248,11 +245,13 @@ INSERT INTO Stores VALUES ('Warehouse B', 17, 123);
 INSERT INTO Stores VALUES ('Warehouse B', 18, 45);
 
 
-INSERT INTO Orders VALUES ('2015-10-04', '2015-10-06', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30);
+INSERT INTO Orders VALUES ('2015-10-04', '2015-10-06', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 1, 30, 30);
+INSERT INTO Orders VALUES ('2016-11-04', '2015-11-06', '1234 Fun Street', 'Edmonton', 'AB', 'T6L 4S4', 1, 1234567890, 2, 100, 75);
 
-
-INSERT INTO OrderedProduct VALUES (1, 1, 2, 55.0);
-INSERT INTO OrderedProduct VALUES (1, 2, 1, 33.0);
+INSERT INTO OrderedProduct VALUES (1, 1, 2, 7.5);
+INSERT INTO OrderedProduct VALUES (1, 2, 1, 15.0);
+INSERT INTO OrderedProduct VALUES (2, 3, 2, 20.0);
+INSERT INTO OrderedProduct VALUES (2, 6, 2, 30.0);
 
 INSERT INTO ProductReview VALUES (9,2,4,'hahahKai SUcks');
 INSERT INTO ProductReview VALUES (8,2,4,'hahahKai SUcks');

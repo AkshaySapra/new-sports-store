@@ -40,7 +40,7 @@ public class LoadData
 	            String command = scanner.next();
 	            if (command.trim().equals(""))
 	                continue;
-	            System.out.println(command);        // Uncomment if want to see commands executed
+	            //System.out.println(command);        // Uncomment if want to see commands executed
 	            try
 	            {
 	            	stmt.execute(command);

@@ -63,7 +63,7 @@
 				if (!rst.next())
 					out.println("<h2>You do not have any payment options on file. Checkout cannot be completed.</h2>");
 				else {
-					out.println("<table><tr><th>Credit card company</th><th>Credit Number</th></tr>");
+					out.println("<table><tr><th>Credit card company&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th><th>Credit Number</th></tr>");
 					do {
 						out.println("<tr><td><input type=\"radio\" name=\"creditnumber\" value=\"" + rst.getString("creditnumber") + "\">"
 								+ rst.getString("creditcardcompany") + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td>" + rst.getString("creditnumber") + "</td></tr>");

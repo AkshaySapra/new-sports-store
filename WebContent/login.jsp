@@ -65,6 +65,7 @@ String loginMessage = (String) session.getAttribute("loginMessage");
 			}else
 				out.println("Login Failed");
 		}
+closeConnection();
 		
 %>
 </body>
