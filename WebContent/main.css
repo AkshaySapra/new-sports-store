@@ -14,18 +14,23 @@
 	background-image:url("images/Mike3.png");
 	background-repeat:no-repeat;
 	background-size:no-cover;
-	background-size: 1200px 500px;
+	background-size: 300px 125px;
 	background-position: center; 
+	
 }
 
 .top h1{
-	color: #f4c542;
+	color: #3399FF;
 	font-size: 150px;
-	font-weight: bold
+	font-weight: bold;
 	font-family: 'Shift', sans-serif;
+	text-align: center;
+	
 }
 .top p{
 	font-size:25px;
+	color: #3399FF;
+	font-size: 60px;
 }
 
 

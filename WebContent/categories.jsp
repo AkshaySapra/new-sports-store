@@ -18,7 +18,7 @@
 	 ResultSet rst = pstmt.executeQuery();
 	 out.print("<table border = \"0\" width = \"1000px\"><tr>");
 	 while(rst.next()){ 
-    	   out.print("<td><input type =button OnClick=\"location.href='ProductView.jsp?catid=" + rst.getInt("catID") + "'\" value =\"" + rst.getString("catName") + "\" button style= \"background: url(" + rst.getString("catURL") + ");width:464px;height:301px;\"/></td>");
+    	   out.print("<td><input type =button OnClick=\"location.href='ProductView.jsp?catid=" + rst.getInt("catID") + "'\" value =\"" + rst.getString("catName") + "\" button style= \"background: url(" + rst.getString("catURL") + ");width:200px;height:200px;\"/></td>");
 	  count++;
 	  if(count == 3){
 	   out.print("</tr><tr>");

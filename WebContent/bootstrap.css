@@ -140,6 +140,7 @@ optgroup {
     font-weight: 700;
 }
 table {
+	background-color:#3399FF;
     border-collapse: collapse;
     border-spacing: 0;
 }
