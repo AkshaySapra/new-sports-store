@@ -54,7 +54,7 @@ try
         getConnection();
 	                		
         /* String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	 */
-        String sql = "SELECT UserID, fname, lname, password, address, city, province, postalcode, GETDATE() as odate, DATEADD(day,2,GETDATE()) as sdate FROM Users WHERE UserID = ?";
+        String sql = "SELECT UserID, fname, lname, address, city, province, postalcode, GETDATE() as odate, DATEADD(day,2,GETDATE()) as sdate FROM Users WHERE UserID = ?";
 				      
    		/* con = DriverManager.getConnection(url, uid, pwd); */
    		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -70,14 +70,6 @@ try
    		else
    		{	
    			custName = rst.getString("fname") + " " + rst.getString("lname");
-			String dbpassword = rst.getString("password");
-				    		
-			/* // make sure the password on the database is the same as the one the user entered
-			if (!dbpassword.equals(password)) 
-			{
-				out.println("The password you entered was not correct.  Please go back and try again.<br>"); 
-				return;
-			} */
 			
    			// Enter order information into database
    			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID, odate, address, city, province, postalcode, sdate, creditnumber, AfterDiscount) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?, ?, 0);";

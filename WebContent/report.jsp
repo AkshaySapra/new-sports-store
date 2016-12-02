@@ -36,7 +36,7 @@ try {
 	SQL = "SELECT DISTINCT TOP 5 oid, TotalAmount, AfterDiscount, (TotalAmount - AfterDiscount) AS Difference FROM Report GROUP BY oid, TotalAmount, AfterDiscount ORDER BY Difference DESC";
 	pstmt = con.prepareStatement(SQL);
 	rst = pstmt.executeQuery();
-	out.println("<table><tr><th>Product ID&nbsp;&nbsp;&nbsp;</th><th>Product Name&nbsp;&nbsp;&nbsp;</th><th>Total Sold&nbsp;&nbsp;&nbsp;</th></tr>");
+	out.println("<table><tr><th>Order ID&nbsp;&nbsp;&nbsp;</th><th>Total Amount&nbsp;&nbsp;&nbsp;</th><th>After Discount&nbsp;&nbsp;&nbsp;</th><th>Discount</th></tr>");
 	while (rst.next()) {
 		out.println("<tr><td>" + rst.getString("oid") + "&nbsp;&nbsp;&nbsp;</td><td>" + rst.getString("TotalAmount") + "&nbsp;&nbsp;&nbsp;</td><td>" + rst.getString("AfterDiscount") + "&nbsp;&nbsp;&nbsp;</td><td>" + rst.getString("Difference") + "&nbsp;&nbsp;&nbsp;</td></tr>");
 	}
