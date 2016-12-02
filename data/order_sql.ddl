@@ -117,14 +117,13 @@ CREATE TABLE Orders (
 CREATE TABLE ProductReview (
 	pid int,
 	UserID int,
-	rnumber int,
 	rating int,
 	description varchar(max),
-	PRIMARY KEY (pid, rnumber),
+	PRIMARY KEY (pid,UserID),
 	FOREIGN KEY (pid) REFERENCES Product (pid)
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (UserID) REFERENCES Users (UserID)
-		ON DELETE SET NULL ON UPDATE CASCADE
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -196,6 +195,12 @@ INSERT INTO ShippingOption VALUES (3, 'Canoe/Portage', 50)
 INSERT INTO Users VALUES (1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'a')
 INSERT INTO Users VALUES (2, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'b')
 INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirls@google.ca', 'p')
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsS@google.ca', 'p')
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlSS@google.ca', 'p')
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSS@google.ca', 'p')
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSS@google.ca', 'p')
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSS@google.ca', 'p')
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsSSSSS@google.ca', 'p')
 
 
 INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890)
@@ -247,4 +252,19 @@ INSERT INTO Orders VALUES ('2015-10-04', '2015-10-06', '1234 Fun Street', 'Edmon
 
 INSERT INTO OrderedProduct VALUES (1, 1, 2, 55.0)
 INSERT INTO OrderedProduct VALUES (1, 2, 1, 33.0)
+
+INSERT INTO ProductReview VALUES (9,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (8,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (7,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (6,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (5,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (4,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (3,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (2,2,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (1,1,4,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (1,4,5,'hahahKai SUcks')
+INSERT INTO ProductReview VALUES (1,2,4,'hahahKai SUcks')
+
+
+
 

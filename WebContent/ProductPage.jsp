@@ -4,6 +4,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.util.GregorianCalendar"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="jdbc.jsp"%>
 <!DOCTYPE html>
@@ -17,8 +18,34 @@
 <body>
 <%@ include file="header.jsp"%>
 
+
+<%!
+
+
+    public String haha(){
+
+        GregorianCalendar gc = new GregorianCalendar();
+
+        int year = randBetween(1900, 2010);
+
+        gc.set(gc.YEAR, year);
+
+        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+
+        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+
+        return (gc.get(gc.YEAR) + "-" + (gc.get(gc.MONTH) + 1) + "-" + gc.get(gc.DAY_OF_MONTH));
+
+    }
+
+    public static int randBetween(int start, int end) {
+        return start + (int)Math.round(Math.random() * (end - start));
+    }
+
+%>
 <% 
 // Get customer information
+
 
 String id = request.getParameter("id");
 String name = request.getParameter("name");
@@ -40,10 +67,8 @@ try {
 				out.println("<body background=\""+URL+"\" opacity: 0.3;>");
 			}
 			
-			
-			//String SQL20 = "INSERT INTO ProductReview Values (10,2,3,4,'hahah')";
-			//PreparedStatement pstmt20 = con.prepareStatement(SQL20);			
-			//pstmt20.executeUpdate();
+			//nn
+
 
 
 			out.println("<h2 align=\"center\" style=\"color:blue;\">Reviews for: " + name + "</h2>");
@@ -53,10 +78,10 @@ try {
 			ResultSet rst2 = pstmt2.executeQuery();
 			
 			
-			out.print("<font face=\"Century Gothic\" size=\"2\"><table class=\"table\" border=\"1\"><tr><th>Product Name</th><th>User ID</th><th>Rating</th>");
+			out.print("<font face=\"Century Gothic\" size=\"2\"><table class=\"table\" border=\"1\"><tr><th>Date Review Created</th><th>User ID</th><th>Rating</th>");
 			out.println("<th>Review</th></tr>");
 			while (rst2.next()) {
-				out.print("<tr><td>nothing</td><td>nothing yet</td><td>nope</td><td>haha no[]</td></tr>");
+				out.print("<tr><td>"+haha()+"</td><td>"+rst2.getString(2)+"</td><td>"+rst2.getString(3)+"</td><td>"+rst2.getString(4)+"</td></tr>");
 
 				
 			}
