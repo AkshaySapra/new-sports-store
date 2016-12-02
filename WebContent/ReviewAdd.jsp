@@ -19,9 +19,9 @@
 
 <% 
 // Get customer information
-String rating = request.getParameter("rating");
+String rating = request.getParameter("Rating");
 String review = request.getParameter("Review");
-String userid = (String)request.getAttribute("authenticatedUser");
+String userid = (String)session.getAttribute("authenticatedUser");
 String Productid = (String)request.getParameter("pid");
 
 
