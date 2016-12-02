@@ -6,7 +6,10 @@
     <title>JSP Page</title>
 </head>
 <body>
-  
+  <c:set var="context" value="${pageContext.request.contextPath}" />
+<script src="${context}/themes/js/jquery.js"></script>
+
+
   <%
    MyClass tc = new MyClass();
    out.print(tc.testMethod());
