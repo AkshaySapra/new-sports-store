@@ -119,8 +119,9 @@ try
 	
 	while (rst.next()) 
 	{
-		out.print("<form method=\"get\" action=\"changeProduct.jsp\"><td><input type=\"submit\" value=\"Submit\">&nbsp;<input type=\"reset\" value=\"Reset\">&nbsp;</td>");
-
+		out.println("<form method=\"get\" action=\"changeProduct.jsp\"><td><input type=\"submit\" value=\"Submit\">&nbsp;<input type=\"reset\" value=\"Reset\">&nbsp;</td>");
+		out.println("<input type=\"hidden\" name=\"pid\" value=\"" + rst.getInt("pid") + "\" />");
+		
 		String itemCategory = rst.getString(4);
 		String URL = rst.getString(5);
 		String color = (String) colors.get(itemCategory);
@@ -129,9 +130,9 @@ try
 		
 		out.println("<td>" + rst.getInt("pid") + "</td><td><INPUT TYPE=\"text\" name=\"pname\" size=\"50\" value=\""
 				+rst.getString("pname")+"\" Style='color=" + color + "'></td>"
-				+ "<td><INPUT TYPE=\"text\" name=\"pname\" size=\"50\" value=\""
+				+ "<td><INPUT TYPE=\"text\" name=\"catName\" size=\"50\" value=\""
 				+itemCategory+"\" Style='color=" + color + "'></td>"
-				+ "<td><INPUT TYPE=\"text\" name=\"pname\" size=\"5\" value=\""
+				+ "<td><INPUT TYPE=\"text\" name=\"price\" size=\"5\" value=\""
 				+rst.getString("price")+"\" Style='color=" + color + "'></td>"
 				+ "<td><select size=\"1\" name=\"currentlySelling\">"
 				+ "<option");
@@ -145,10 +146,8 @@ try
 		invPstmt.setInt(1, rst.getInt("pid"));
 		invPstmt.setInt(2, rst.getInt("pid"));
 		ResultSet invRst = invPstmt.executeQuery();
-		if (invRst.next())
-			out.println("<td><INPUT TYPE=\"text\" name=\"Ainventory\" size = \"10\" value=\""+ invRst.getInt("Ainventory") + "\" Style='color=" + color + "'></td><td><INPUT TYPE=\"text\" name=\"Ainventory\" size = \"10\" value=\""+ invRst.getInt("Binventory") + "\" Style='color=" + color +"'></td></tr>");
-		else
-			out.println("<td></td><td></td></tr>");
+		invRst.next();
+		out.println("<td><INPUT TYPE=\"text\" name=\"Ainventory\" size = \"10\" value=\""+ invRst.getInt("Ainventory") + "\" Style='color=" + color + "'></td><td><INPUT TYPE=\"text\" name=\"Binventory\" size = \"10\" value=\""+ invRst.getInt("Binventory") + "\" Style='color=" + color +"'></td></tr></form>");
 	}
 	out.println("</table></font>");
 	closeConnection();
