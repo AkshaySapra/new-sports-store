@@ -72,7 +72,7 @@ try {
 //"#3399FF"
 
 			out.println("<h2 align=\"center\" style=\"color:#3399FF;\">Reviews for: " + name + "</h2>");
-			String SQL3 = "SELECT * FROM ProductReview WHERE pid = ?";
+			String SQL3 = "SELECT * FROM ProductReview WHERE pid = ? ORDER BY rDate desc";
 			PreparedStatement pstmt2 = con.prepareStatement(SQL3);
 			pstmt2.setString(1, id);
 			ResultSet rst2 = pstmt2.executeQuery();
@@ -94,7 +94,7 @@ try {
 				else if (review==5)	
 					reviews=reviews+"&#9733&#9733&#9733&#9733&#9733";
 
-				out.print("<tr><td>"+haha()+"</td><td>"+rst2.getString(2)+"</td><td>"+reviews+"</td><td>"+rst2.getString(4)+"</td></tr>");
+				out.print("<tr><td>"+rst2.getString(5)+"</td><td>"+rst2.getString(2)+"</td><td>"+reviews+"</td><td>"+rst2.getString(4)+"</td></tr>");
 
 				
 			}

@@ -13,12 +13,14 @@ else {
 	try {	
 				getConnection();
 				int ProdID=Integer.parseInt(Productid);
-				String SQL2 = "INSERT INTO ProductReview VALUES (?,?,?,?)";
+				String SQL2 = "INSERT INTO ProductReview VALUES (?,?,?,?,?)";
 				PreparedStatement pstmt = con.prepareStatement(SQL2);			
 				pstmt.setInt(1,ProdID);
 				pstmt.setInt(2,Integer.parseInt(userid));
 				pstmt.setInt(3,Integer.parseInt(rating));
 				pstmt.setString(4,review);
+				//String date=java.sql.Timestamp;
+				pstmt.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis()));
 				pstmt.executeUpdate();
 	
 				closeConnection();

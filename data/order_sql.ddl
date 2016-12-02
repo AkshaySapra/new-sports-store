@@ -122,6 +122,7 @@ CREATE TABLE ProductReview (
 	UserID int,
 	rating int,
 	description varchar(max),
+	rDate datetime,
 	PRIMARY KEY (pid,UserID),
 	FOREIGN KEY (pid) REFERENCES Product (pid)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -197,8 +198,14 @@ INSERT INTO ShippingOption VALUES (3, 'Canoe/Portage', 50);
 
 INSERT INTO Users VALUES (1, 'Drew', 'Swan', '413431531698043 Quebec Street', 'Vancouver', 'BC', 'V2I Q8S', 'drewswan@drew.swan', 'a');
 INSERT INTO Users VALUES (2, 'Swan', 'Drew', '413431531698043 Vancouver Street', 'Quebec City', 'QB', 'Q8S V2I', 'swandrew@swan.drew', 'b');
-INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirls@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirl@google.ca', 'p');
 INSERT INTO Users VALUES (1, 'Kai', 'Neubauer', '1234 My Street', 'Some Place', 'BC', 'V1V 1V7', 'kai@neubauer.ca', 'password');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirls@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlss@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsss@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlssss@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlsssss@google.ca', 'p');
+INSERT INTO Users VALUES (1, 'Akshay', 'Sapra', '4abcd', 'Quebec City', 'QB', 'Q8S V2I', 'ilikegirlssssss@google.ca', 'p');
 
 
 INSERT INTO PaymentMethod VALUES ('Drew''s Super Legit Credit Company', 1234567890);
@@ -253,17 +260,17 @@ INSERT INTO OrderedProduct VALUES (1, 2, 1, 15.0);
 INSERT INTO OrderedProduct VALUES (2, 3, 2, 20.0);
 INSERT INTO OrderedProduct VALUES (2, 6, 2, 30.0);
 
-INSERT INTO ProductReview VALUES (9,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (8,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (7,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (6,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (5,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (4,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (3,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (2,2,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (1,1,4,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (1,4,5,'hahahKai SUcks');
-INSERT INTO ProductReview VALUES (1,2,4,'hahahKai SUcks');
+INSERT INTO ProductReview VALUES (9,2,4,'hahahKai SUcks','2015-04-12');
+INSERT INTO ProductReview VALUES (8,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (7,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (6,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (5,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (4,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (3,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (2,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (1,1,4,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (1,4,5,'hahahKai SUcks','2015-04-12 05:09:34');
+INSERT INTO ProductReview VALUES (1,2,4,'hahahKai SUcks','2015-04-12 05:09:34');
 
 
 CREATE VIEW Report
