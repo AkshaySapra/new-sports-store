@@ -13,10 +13,10 @@ public class ResetData
 {
 	public static void main(String[] argv) throws Exception
 	{
-		loadData();
+//		loadData(correct_path);
 	}
 	
-	public static void loadData() throws Exception
+	public static void loadData(String correct_path) throws Exception
 	{		
 		String url = "jdbc:sqlserver://sql04.ok.ubc.ca:1433;DatabaseName=db_kneubaue;";
 		String uid = "kneubaue";
@@ -26,8 +26,10 @@ public class ResetData
 
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection con = DriverManager.getConnection(url, uid, pw);
-				
-		String fileName = "data/order_sql.ddl";
+		
+		
+//		
+		String fileName = correct_path;
 		
 	    try
 	    {
