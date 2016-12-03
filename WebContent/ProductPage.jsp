@@ -100,7 +100,7 @@ try {
 			}
 
 			out.println("<H2><A HREF=\"AddReview.jsp?id=" + id + "\">Leave a review for this product</A></H2>");
-
+			out.println("<h2><a href=\"addcart.jsp?id=" + id + "&name="+name+"&price=10"+"\">Add to Cart</a>");
 			
 			//out.println("<img src=\"images/basketball shoes.JPG\" alt=\"Mountain View\" style=\"width:304px;height:228px;\">");
 	
