@@ -34,6 +34,11 @@ catch (SQLException ex)
 
 %>
 <h2><a href="productManage.jsp">Manage Current Products</a></h2>
+
+
+<h2><a href="resetData.jsp">Reset Data to Original</a></h2>
+
 <h2><a href="report.jsp">View Reports</a></h2>
+
 </body>
 </html>
