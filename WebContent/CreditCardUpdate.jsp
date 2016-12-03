@@ -20,7 +20,7 @@
 	<%
 	
 	String CreditCardNumberTemp = request.getParameter("CreditCardNumber");
-	int CreditCardNumber = Integer.parseInt(CreditCardNumberTemp);
+	long CreditCardNumber = Long.parseLong(CreditCardNumberTemp);
 	String CreditCardCompany = request.getParameter("CreditCardCompany");
 	
 	try {	
@@ -38,7 +38,7 @@
 		}else{
 			String SQL3 = "INSERT INTO PaymentMethod (creditnumber, creditcardcompany) VALUES (?,?)";
 			PreparedStatement pstmt3 = con.prepareStatement(SQL3);
-			pstmt3.setInt(1, CreditCardNumber);
+			pstmt3.setLong(1, CreditCardNumber);
 			pstmt3.setString(2,CreditCardCompany);
 			pstmt3.executeUpdate();
 		}
@@ -49,13 +49,13 @@
 		if(rst4.next()){
 			String SQL5 = "UPDATE HasPaymentMethod SET creditnumber = ? WHERE UserID = " + id;
 			PreparedStatement pstmt5 = con.prepareStatement(SQL5);
-			pstmt5.setInt(1,CreditCardNumber);
+			pstmt5.setLong(1,CreditCardNumber);
 			pstmt5.executeUpdate();
 		}else{
 			String SQL6 = "INSERT INTO HasPaymentMethod (UserID, creditnumber) VALUES (?,?)";
 			PreparedStatement pstmt6 = con.prepareStatement(SQL6);
 			pstmt6.setInt(1, idInt);
-			pstmt6.setInt(2,CreditCardNumber);
+			pstmt6.setLong(2,CreditCardNumber);
 			pstmt6.executeUpdate();
 		}
 		
