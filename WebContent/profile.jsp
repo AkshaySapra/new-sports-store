@@ -15,7 +15,7 @@
  <%@ include file="header.jsp"%>
  <a href="Update.jsp">Update Information</a><br><br>
  <a href="AddCreditCard.jsp">Change Credit Card Information</a><br><br>
- <a href="DeleteAccount.jsp">Delete Account</a>
+ <a href="DeleteAccount.jsp">Delete Account</a><br><br>
  <a href="ViewOrder.jsp">View Orders</a>
 </body>
 </html>

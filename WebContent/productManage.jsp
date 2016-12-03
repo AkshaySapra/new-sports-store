@@ -72,7 +72,7 @@ else if (hasNameParam)
 {
 	filter = "<h3>Products containing '"+name+"'</h3>";
 	name = '%'+name+'%';
-	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P LEFT OUTER JOIN ProductCategory PC ON P.catID = PC.catID WHERE P.pname LIKE ? OR IS NULL";
+	sql = "SELECT P.pid, P.pname, P.price, PC.catName, picURL, currentlySelling FROM Product P LEFT OUTER JOIN ProductCategory PC ON P.catID = PC.catID WHERE P.pname LIKE ?";
 }
 else if (hasCategoryParam)
 {
