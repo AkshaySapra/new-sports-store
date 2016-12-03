@@ -1,5 +1,4 @@
 DROP VIEW Report;
-DROP VIEW invView
 DROP TRIGGER newProductTrig;
 DROP TABLE OrderedProduct;
 DROP TABLE Stores;
@@ -279,12 +278,6 @@ AS
 SELECT O.oid, odate, sdate, O.UserID, fname, lname, O.province, TotalAmount, AfterDiscount, P.pid, pname, quantity, OP.price
 FROM Orders O, OrderedProduct OP, Users U, Product P
 WHERE O.oid = OP.oid AND U.UserID = O.UserID AND P.pid = OP.pid;
-
-CREATE VIEW InvView
-AS
-SELECT A.inventory as Ainventory, B.inventory AS Binventory, (A.inventory + B.inventory) AS TotalInventory, A.pid
-FROM (Select inventory, pid FROM Stores WHERE wname = 'Warehouse A') as A, (Select inventory, pid FROM Stores WHERE wname = 'Warehouse B') as B
-WHERE A.pid = B.pid;
 
 CREATE TRIGGER newProductTrig
 ON Product

@@ -54,7 +54,7 @@ try
         getConnection();
 	                		
         /* String sql = "SELECT UserID, cname, password FROM Users WHERE UserID = ?";	 */
-        String sql = "SELECT UserID, fname, lname, password, address, city, province, postalcode, GETDATE() as odate, DATEADD(day,2,GETDATE()) as sdate FROM Users WHERE UserID = ?";
+        String sql = "SELECT UserID, fname, lname, address, city, province, postalcode, GETDATE() as odate, DATEADD(day,2,GETDATE()) as sdate FROM Users WHERE UserID = ?";
 				      
    		/* con = DriverManager.getConnection(url, uid, pwd); */
    		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -70,14 +70,6 @@ try
    		else
    		{	
    			custName = rst.getString("fname") + " " + rst.getString("lname");
-			String dbpassword = rst.getString("password");
-				    		
-			/* // make sure the password on the database is the same as the one the user entered
-			if (!dbpassword.equals(password)) 
-			{
-				out.println("The password you entered was not correct.  Please go back and try again.<br>"); 
-				return;
-			} */
 			
    			// Enter order information into database
    			sql = "INSERT INTO Orders (UserID, TotalAmount, TypeID, odate, address, city, province, postalcode, sdate, creditnumber, AfterDiscount) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?, ?, 0);";
@@ -103,7 +95,11 @@ try
            	double total =0;
            	Iterator<Map.Entry<String, ArrayList<Object>>> iterator = productList.entrySet().iterator();
            	NumberFormat currFormat = NumberFormat.getCurrencyInstance();
-						
+			
+           	sql = "INSERT INTO OrderedProduct (oid, pid, quantity, price) VALUES( ?, ?, ?, ?)";
+         	String sqlInv = "SELECT * FROM InvView WHERE pid = ?";
+         	PreparedStatement invPstmt;
+         	ResultSet invRst;
            	while (iterator.hasNext())
            	{ 
            		Map.Entry<String, ArrayList<Object>> entry = iterator.next();
@@ -119,8 +115,19 @@ try
                   	out.print("<td align=\"right\">"+currFormat.format(pr*qty)+"</td></tr>");
                    out.println("</tr>");
                    total = total +pr*qty;
-
-   				sql = "INSERT INTO OrderedProduct (oid, pid, quantity, price) VALUES( ?, ?, ?, ?)";
+                   
+                invPstmt = con.prepareStatement(sqlInv);
+                invPstmt.setInt(1, Integer.parseInt(productId));
+                invRst = invPstmt.executeQuery();
+                invRst.next();
+                
+                if (invRst.getInt("TotalInventory") < qty) {
+                	Statement delStmt = con.createStatement();
+                	delStmt.execute("DELETE FROM Orders WHERE oid = " + orderId);
+                	break;
+                }
+                
+                
    				pstmt = con.prepareStatement(sql);
    			 	pstmt.setInt(1, orderId); 
    				pstmt.setInt(2, Integer.parseInt(productId));
@@ -143,11 +150,15 @@ try
    			pstmt.setDouble(1, total);
    			pstmt.setDouble(2, total - total*discount/100);
    			pstmt.setInt(3, orderId);			
-   			pstmt.executeUpdate();						
-
-   			out.println("<h1>Order completed.  Will be shipped on this date: " +rst.getString("sdate") + "</h1>");
-   			out.println("<h1>Your order reference number is: "+orderId+"</h1>");
-   			out.println("<h1>Shipping to customer id: "+authenticatedUser+", Name: "+custName+"</h1>");
+   			int count = pstmt.executeUpdate();						
+			if (count != 0) {
+   				out.println("<h1>Order completed.  Will be shipped on this date: " +rst.getString("sdate") + "</h1>");
+   				out.println("<h1>Your order reference number is: "+orderId+"</h1>");
+   				out.println("<h1>Shipping to customer id: "+authenticatedUser+", Name: "+custName+"</h1>");
+			}
+			else {
+				out.println("<h1>Order could not be placed because it exceeds the warehouse inventory. Don't be greedy!<h1>");
+			}
 
    			// Clear session variables (cart)
    			session.setAttribute("productList", null);    

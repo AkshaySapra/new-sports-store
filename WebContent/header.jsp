@@ -11,13 +11,14 @@
 		</ul>
 		<ul class="pull-right">
 			<li><a href="showcart.jsp">View Cart</a></li>
-			<li><a href="createAccount.jsp">Sign Up</a></li>
+		
 			<%
 				String authenticatedUser = (String) session.getAttribute("authenticatedUser");
 				String groupID = (String) session.getAttribute("groupID");
 
 				if (authenticatedUser == null || authenticatedUser.equals("")) {
 					out.print("<li><a href=\"login.jsp\">Log In</a></li>");
+					out.print("<li><a href=\"createAccount.jsp\">Sign Up</a></li>");
 				} else {
 					if (groupID != null)
 						out.print("<li><a href=\"profile.jsp\">Profile</a></li>");

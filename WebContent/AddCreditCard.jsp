@@ -14,7 +14,7 @@
   <%
   	String id = (String) session.getAttribute("authenticatedUser");
   	String SQL = "SELECT creditnumber FROM HasPaymentMethod WHERE UserID = " + id;
-  	int creditNumber;
+  	long creditNumber;
     getConnection();
     try{
     	PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -30,7 +30,7 @@
         	out.print("<input type=\"submit\" value=\"Submit\"><input type=\"reset\" value=\"Reset\">");
         	out.print("</form>");
     	}else{
-    		creditNumber = rst.getInt("creditnumber");
+    		creditNumber = rst.getLong("creditnumber");
     		String SQL2 = "SELECT creditcardcompany FROM PaymentMethod WHERE creditnumber = " + creditNumber;
     		PreparedStatement pstmt2 = con.prepareStatement(SQL2);
         	ResultSet rst2 = pstmt2.executeQuery();
