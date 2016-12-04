@@ -1,5 +1,6 @@
 DROP VIEW Report;
 DROP VIEW invView
+DROP TRIGGER replaceInvTrig
 DROP TRIGGER newProductTrig;
 DROP TABLE OrderedProduct;
 DROP TABLE Stores;
@@ -294,3 +295,13 @@ INSERT INTO Stores (wname, pid, inventory) SELECT 'Warehouse A', pid, 0 FROM ins
 INSERT INTO Stores (wname, pid, inventory) SELECT 'Warehouse B', pid, 0 FROM inserted
 GO;
 
+CREATE TRIGGER replaceInvTrig
+ON OrderedProduct
+AFTER DELETE AS
+BEGIN
+DECLARE @quantity int, @pid int
+SELECT @quantity = d.quantity, @pid = d.pid
+FROM deleted d
+UPDATE Stores
+SET inventory = inventory + @quantity WHERE wname = 'Warehouse A' AND stores.pid = @pid
+END;

@@ -98,8 +98,11 @@ try
 			
            	sql = "INSERT INTO OrderedProduct (oid, pid, quantity, price) VALUES( ?, ?, ?, ?)";
          	String sqlInv = "SELECT * FROM InvView WHERE pid = ?";
+         	String sqlReduce;
          	PreparedStatement invPstmt;
+         	PreparedStatement reducePstmt;
          	ResultSet invRst;
+         	int totalInventory = 0;
            	while (iterator.hasNext())
            	{ 
            		Map.Entry<String, ArrayList<Object>> entry = iterator.next();
@@ -122,18 +125,35 @@ try
                 invRst.next();
                 
                 if (invRst.getInt("TotalInventory") < qty) {
+                	totalInventory = invRst.getInt("TotalInventory");
                 	Statement delStmt = con.createStatement();
                 	delStmt.execute("DELETE FROM Orders WHERE oid = " + orderId);
                 	break;
                 }
-                
-                
+                                
    				pstmt = con.prepareStatement(sql);
    			 	pstmt.setInt(1, orderId); 
    				pstmt.setInt(2, Integer.parseInt(productId));
    				pstmt.setInt(3, qty);
    				pstmt.setDouble(4, Double.parseDouble(price));
-   				pstmt.executeUpdate();				
+   				pstmt.executeUpdate();
+   				
+   				if (invRst.getInt("Ainventory") < qty) {
+   					sqlReduce = "UPDATE Stores SET inventory = 0 WHERE wname = 'Warehouse A' and pid = ?";
+   					reducePstmt = con.prepareStatement(sqlReduce);
+   					reducePstmt.setInt(1, Integer.parseInt(productId));
+   					reducePstmt.executeUpdate();
+   					sqlReduce = "UPDATE Stores SET inventory = inventory - " + (qty - invRst.getInt("Ainventory")) + " WHERE wname = 'Warehouse B' and pid = ?";
+   					reducePstmt = con.prepareStatement(sqlReduce);
+   					reducePstmt.setInt(1, Integer.parseInt(productId));
+   					reducePstmt.executeUpdate();
+   				}
+   				else {
+   					sqlReduce = "UPDATE Stores SET inventory = inventory - " + qty + " WHERE wname = 'Warehouse A' and pid = ?";
+   					reducePstmt = con.prepareStatement(sqlReduce);
+   					reducePstmt.setInt(1, Integer.parseInt(productId));
+   					reducePstmt.executeUpdate();
+   				}
            	}
            	out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td>"
                           	+"<td aling=\"right\">"+currFormat.format(total)+"</td></tr>");
@@ -157,7 +177,7 @@ try
    				out.println("<h1>Shipping to customer id: "+authenticatedUser+", Name: "+custName+"</h1>");
 			}
 			else {
-				out.println("<h1>Order could not be placed because it exceeds the warehouse inventory. Don't be greedy!<h1>");
+				out.println("<h1>Order could not be placed because it exceeds the warehouse inventory (" + totalInventory + "). Don't be greedy!<h1>");
 			}
 
    			// Clear session variables (cart)
