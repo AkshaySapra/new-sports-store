@@ -4,7 +4,7 @@
 
 <html>
 <head>
-<title>Checkout</title>
+<title>Mikey.ca | Checkout</title>
  <link href="shift.css" rel="stylesheet">
  <link href="bootstrap.css" rel="stylesheet">
  <link href="second.css" rel="stylesheet">

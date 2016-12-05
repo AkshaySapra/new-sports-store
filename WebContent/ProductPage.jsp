@@ -1,16 +1,10 @@
-<%@ page import="java.sql.*" %>
-<%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="java.util.GregorianCalendar"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="jdbc.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>View Product</title>
+<title>Mikey.ca | View Product</title>
  <link href="shift.css" rel="stylesheet">
  <link href="bootstrap.css" rel="stylesheet">
  <link href="second.css" rel="stylesheet">
@@ -19,38 +13,12 @@
 <%@ include file="header.jsp"%>
 
 
-<%!
-
-
-    public String haha(){
-
-        GregorianCalendar gc = new GregorianCalendar();
-
-        int year = randBetween(1900, 2010);
-
-        gc.set(gc.YEAR, year);
-
-        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
-
-        gc.set(gc.DAY_OF_YEAR, dayOfYear);
-
-        return (gc.get(gc.YEAR) + "-" + (gc.get(gc.MONTH) + 1) + "-" + gc.get(gc.DAY_OF_MONTH));
-
-    }
-
-    public static int randBetween(int start, int end) {
-        return start + (int)Math.round(Math.random() * (end - start));
-    }
-
-%>
 <% 
 // Get customer information
 
 
 String id = request.getParameter("id");
 
-@SuppressWarnings({"unchecked"})
-NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 try {	
 			getConnection();
 		

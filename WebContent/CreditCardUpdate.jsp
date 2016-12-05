@@ -1,15 +1,10 @@
-<%@ page import="java.sql.*" %>
-<%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="jdbc.jsp"%>
+<%@ include file="auth.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Updating</title>
+<title>Mikey.ca | Updating Credit Card Information</title>
  <link href="shift.css" rel="stylesheet">
  <link href="bootstrap.css" rel="stylesheet">
  <link href="main.css" rel="stylesheet">

@@ -28,7 +28,7 @@
 	 
 	out.print("</tr>");
 	}catch(SQLException E){
-	  out.println("Les Exception");
+	  out.println("Exception: " + E);
 	}
  %>
  </body>

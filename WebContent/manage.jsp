@@ -40,5 +40,7 @@ catch (SQLException ex)
 
 <h2><a href="report.jsp">View Reports</a></h2>
 
+<h2><a href="listorder.jsp">List All Orders</a></h2>
+
 </body>
 </html>

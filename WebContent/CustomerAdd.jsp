@@ -1,15 +1,9 @@
-<%@ page import="java.sql.*" %>
-<%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="jdbc.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Customer!!!</title>
+<title>Mikey.ca | New Customer</title>
  <link href="shift.css" rel="stylesheet">
  <link href="bootstrap.css" rel="stylesheet">
  <link href="second.css" rel="stylesheet">
@@ -28,10 +22,6 @@ String city = request.getParameter("city");
 String province = request.getParameter("province");
 String postalcode = request.getParameter("postalcode");
 
-
-
-@SuppressWarnings({"unchecked"})
-NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 try {	
 			getConnection();
 		
